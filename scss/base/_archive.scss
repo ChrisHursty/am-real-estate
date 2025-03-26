@@ -1,0 +1,16 @@
+.single-card {
+    padding: 10px;
+
+    a {
+        text-decoration: none;
+    }
+
+    .content {
+        h3 {
+            color: $dark-gray;
+            font-family: $heading;
+            font-size: 1.5em;
+            text-transform: capitalize;
+        }
+    }
+}

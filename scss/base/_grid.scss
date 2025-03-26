@@ -1,0 +1,58 @@
+// Base container styles
+.container {
+    max-width: 1180px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.fw-container {
+    width: 100%;
+}
+
+// Both containers are flex containers
+.container,
+.fw-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+// Row style
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%; // Ensure row spans the full width of the container
+}
+
+// Base column style
+.col {
+    padding-right: 15px;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+
+// Column widths for all sizes
+@for $i from 1 through 12 {
+    .col-#{$i} {
+        flex: 0 0 calc(100% / 12 * #{$i});
+        max-width: calc(100% / 12 * #{$i});
+    }
+}
+
+// Media queries for responsive adjustments
+@media (min-width: 768px) {
+    @for $i from 1 through 12 {
+        .col-md-#{$i} {
+            flex: 0 0 calc(100% / 12 * #{$i});
+            max-width: calc(100% / 12 * #{$i});
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    @for $i from 1 through 12 {
+        .col-lg-#{$i} {
+            flex: 0 0 calc(100% / 12 * #{$i});
+            max-width: calc(100% / 12 * #{$i});
+        }
+    }
+}

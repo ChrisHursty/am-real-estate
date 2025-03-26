@@ -1,0 +1,96 @@
+.testimonial-container {
+    background: $dark-gray;
+    color: $white;
+    padding: 30px 0;
+
+    @media (max-width: 768px) {
+        padding: 20px 0;
+    }
+
+    h2 {
+        color: $white;
+        margin-bottom: 30px;
+    }
+
+    .owl-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 330px;
+    }
+
+    .item {
+        display: flex;
+        flex-direction: column;
+        align-content: space-around;
+        padding: 0 20px;
+
+        blockquote {
+            flex-grow: 1;
+            color: $white;
+            font-size: 1.1em;
+            line-height: 1.6;
+            font-style: italic;
+            position: relative;
+    
+            .open-quote {
+                color: #5a5a5a;
+                font-family: $heading;
+                font-size: 12em;
+                position: absolute;
+                top: -70px;
+                left: -40px;
+                z-index: -1;
+            }
+        }
+    
+        .details {
+            display: flex;
+            align-items: center;
+            align-self: baseline;
+            margin-top: 20px;
+    
+            .image {
+                margin-right: 20px;
+                width: 80px;
+    
+                img {
+                    border-radius: 50%;
+                    max-width: 100%;
+                }
+            }
+    
+            .name, .company {
+                color: $white;
+                font-family: $heading;
+                width: auto;
+            }
+    
+            .company {
+                font-family: $sub-heading;
+                font-size: 1.25em;
+            }
+        }
+    }
+
+    .owl-nav {
+        position: absolute;
+        top: 100px;
+        width: 100%;
+
+        button {
+            font-size: 80px !important;
+            line-height: 40px !important;
+        }
+
+        .owl-prev {
+            position: absolute;
+            left: -30px !important;
+        }
+
+        .owl-next {
+            position: absolute;
+            right: -30px !important;
+        }
+    }
+}

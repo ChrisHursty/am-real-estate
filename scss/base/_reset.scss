@@ -1,0 +1,115 @@
+/* Reset Margin, Padding, and Box Sizing */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set Default Font Styles */
+html {
+  font-size: 100%; /* Respect user-set browser font size */
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
+}
+
+/* Remove List Styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Set Consistent Border Box Model */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Remove Default Link Styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Remove Default Table Styles */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Make Forms More Consistent */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  border: none;
+  outline: none;
+}
+
+/* Remove HTML5 Hidden Attribute Styling */
+[hidden] {
+  display: none;
+}
+
+/* Reset Block Level Elements */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/* Ensure Consistent Display for Grouping Elements */
+figcaption,
+figure,
+main {
+  display: block;
+}
+
+/* Correct HTML5 Element Display for Older Browsers */
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+}
+
+/* Prevent iOS Text Size Adjust After Orientation Change */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Avoid Disproportional Scaling of Content */
+object,
+embed {
+  max-width: 100%;
+}
+
+/* Remove Default Form Styles */
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+}
+
+/* Remove Chrome's Autofill Style */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}

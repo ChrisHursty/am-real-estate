@@ -1,0 +1,105 @@
+.sidebar {
+    margin-top: 20px;
+    padding-left: 30px;
+
+    @media (max-width: 767px) {
+        padding-left: 0;
+    }
+
+    hr {
+        border-bottom: 1px solid $primary;
+        border-top: 0;
+    }
+}
+
+.random_posts_widget,
+.random_portfolio_widget {
+
+    .portfolio-item img {
+        border-radius: 0;
+    }
+
+    h2 {
+        color: $primary;
+        font-family: $heading;
+        font-size: 1.4rem;
+        margin: 10px 0;
+    }
+    
+    ul {
+        list-style-type: none;
+        
+        li {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-left: 0;
+            margin-bottom: 10px; // Adjust based on your design
+    
+            .sidebar-img {
+                border-radius: 20px;
+                flex-basis: 40%;
+                max-width: 40%;
+                height: 90px;
+                overflow: hidden;
+
+                @media (max-width: 767px) {
+                    flex-basis: 20%;
+                    max-width: 20%;
+                    border-radius: 0;
+                    padding-left: 0;
+                }
+            }
+
+            span {
+                font-size: 0.8rem;
+                width: calc(60% - 10px);
+
+                @media (max-width: 767px) {
+                    width: calc(80% - 10px);
+                }
+            }
+    
+            a {
+                display: flex;
+                color: $primary; // Adjust color as needed
+                font-weight: bold;
+                flex: 1;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                text-decoration: none;
+                transition: color 0.5s ease-in-out;
+                
+    
+                &:hover {
+                    color: $dark-gray;
+                    text-decoration: underline;
+                }
+            }
+    
+            @media (max-width: 600px) {
+                flex-direction: column;
+    
+                img {
+                    flex-basis: auto;
+                    max-width: 100%;
+                }
+    
+                a {
+                    padding: 10px 0 0; // Adjust padding for mobile layout as needed
+                }
+            }
+        }
+    }
+}
+
+.random_portfolio_widget {
+    ul {
+        li {
+            .sidebar-img {
+                height: auto;
+            }
+        }
+    }
+}

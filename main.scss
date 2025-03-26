@@ -1,0 +1,37 @@
+// Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans&family=Stint+Ultra+Expanded&display&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+// Variables
+$black: #000;
+$white: #ffffff;
+$primary: dodgerblue; // Red
+$secondary: #3939A3; // Purple
+$dark-gray: #363636;
+$light-gray: #f4f4f4;
+$dark-red: #6f0003;
+
+$footer-top-color: #CC1B1F;
+$footer-bottom-color: #6F0003;
+
+// Fonts
+$heading: 'Stint Ultra Expanded',
+serif;
+$sub-heading: 'Quattrocento Sans', sans-serif;
+$body: 'Montserrat', sans-serif;
+
+// Base Styles
+@import 'base/reset';
+@import 'base/common';
+@import 'base/grid';
+@import 'base/helpers';
+@import 'base/responsive-fonts';
+
+@import 'base/header';
+@import 'base/footer';
+@import 'base/cta';
+@import 'base/testimonials-slider';
+@import 'base/home-page';
+@import 'base/portfolio-grid.scss';
+@import 'base/hero-title';
+@import 'base/single-portfolio.scss';
+@import 'base/company-ticker.scss';

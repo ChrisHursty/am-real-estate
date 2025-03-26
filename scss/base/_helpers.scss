@@ -1,0 +1,39 @@
+// Utility classes
+
+.align-center, .aligncenter {
+    margin-right: auto;
+    margin-left: auto;
+}
+  
+.align-right, .alignright {
+    margin-left: auto;
+    float: right;
+}
+
+img.align-right,
+img.alignright {
+    margin-left: auto;
+    padding-left: 15px;
+    float: right;
+}
+
+.align-left, .alignleft {
+    margin-right: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.m30 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.mt30 {
+    margin-top: 30px;
+}
+
+.mb30 {
+    margin-bottom: 30px;
+}

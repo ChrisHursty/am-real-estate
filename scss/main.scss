@@ -1,0 +1,42 @@
+// Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+// Variables
+$black: #001c28;
+$white: #e5dbd4;
+$primary: #244554; // Slate Gray/Blue
+$secondary: #6bc2c1; // Torquiose
+$dark-gray: #363636;
+$light-gray: #f4f4f4;
+$navy: #033c75; // Navy
+
+$footer-top-color: $black;
+$footer-bottom-color: $black;
+
+// Fonts
+$heading: 'Playfair Display', sans-serif,
+serif;
+$sub-heading: 'Montserrat', sans-serif;
+$body: 'Montserrat', sans-serif;
+
+// Base Styles
+@import 'base/reset';
+@import 'base/common';
+@import 'base/grid';
+@import 'base/helpers';
+@import 'base/responsive-fonts';
+
+@import 'base/header';
+@import 'base/footer';
+@import 'base/cta';
+@import 'base/testimonials-slider';
+@import 'base/home-page';
+@import 'base/portfolio-grid.scss';
+@import 'base/hero-title';
+@import 'base/grid-page';
+@import 'base/landing-page';
+@import 'base/single-portfolio.scss';
+@import 'base/company-ticker.scss';
+@import 'base/archive.scss';
+@import 'base/sidebar.scss';
+@import 'base/listings.scss';
