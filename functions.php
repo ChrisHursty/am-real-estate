@@ -23,6 +23,9 @@ function amre_wp_theme_setup() {
 
     // Add theme support for Post Thumbnails
     add_theme_support( 'post-thumbnails' );
+    // Register a new image size for the sidebar
+    // 150px wide x 150px tall, hard crop
+    add_image_size('sidebar-thumb', 150, 150, true);
 
     // Register Navigation Menu
     register_nav_menus( array(

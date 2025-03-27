@@ -165,6 +165,7 @@ if ( $show_recent_listings && $num_recent_listings > 0 ) :
                         </div>
                     </div>
                 <?php endwhile; ?>
+                <a class="amre-btn align-center" href="/listings"><span>View All Listings</span></a>
             </div><!-- .row -->
         </div> <!-- .container -->
     </section>
@@ -173,11 +174,6 @@ if ( $show_recent_listings && $num_recent_listings > 0 ) :
     wp_reset_postdata();
 endif;
 ?>
-
-<!-- Services -->
-<section class="cta">
-    <?php get_template_part('template-parts/services'); ?>
-</section>
 <!-- Testimonial Slider -->
 <section class="testimonials">
     <?php get_template_part('template-parts/testimonial-slider'); ?>
@@ -186,19 +182,6 @@ endif;
 <section class="cta">
     <?php get_template_part('template-parts/call-to-action'); ?>
 </section>
-<section class="container-fw gallery-bg">
-    <?php while (have_posts()) : the_post();
-        $images = get_field('hp_gallery');
-        if ($images) : ?>
-            <div class="owl-carousel hp-slider owl-theme hp-gallery-carousel">
-                <?php foreach ($images as $image) : ?>
-                    <div class="item">
-                        <img src="<?php echo wp_get_attachment_image_url( $image['id'], 'hp-gallery-img' ); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
-                    </div>
-                <?php endforeach; ?>
-            </div>
-    <?php endif;
-    endwhile; ?>
-</section>
+
 <?php
 get_footer();

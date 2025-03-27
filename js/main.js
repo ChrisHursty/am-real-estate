@@ -157,3 +157,32 @@ jQuery(document).ready(function($){
         }
     });
 });
+
+// Initialize the carousel for the featured listings
+jQuery(document).ready(function($){
+    // 1) Init Owl Carousel
+    $('.listing-featured-carousel').owlCarousel({
+      items: 1,
+      loop: true,
+      nav: true,
+      dots: true,
+      autoplay: false,
+      navText: [
+        '<i class="fas fa-chevron-left"></i>',
+        '<i class="fas fa-chevron-right"></i>'
+      ]
+    });
+  
+    // 2) Init Magnific Popup
+    //    We target the same container .listing-featured-carousel
+    //    and delegate to .popup-image links inside
+    $('.listing-featured-carousel').magnificPopup({
+      delegate: 'a.popup-image',
+      type: 'image',
+      gallery: {
+        enabled: true // lets you click arrows in the popup to see next/prev images
+      },
+      // optional: add other settings for transitions, etc.
+    });
+  });
+  

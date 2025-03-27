@@ -47,13 +47,14 @@ if (!empty($category_terms) && !is_wp_error($category_terms)) {
 echo '</div></div></section>';
 
 ?>
-<section class="container content-bg slim-page">
+<section class="container content-bg">
     <div class="row">
-        <div class="col-12 align-center content">
+        <div class="col-sm-12 col-md-8 content">
             <div class="content-area">
                 <?php the_content(); ?>
             </div>
         </div>
+        <?php get_sidebar(); ?>
     </div><!-- .row -->
 </section>
 

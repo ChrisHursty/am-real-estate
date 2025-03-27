@@ -1,8 +1,28 @@
 <?php
-/**
- * Single: Listing
- */
+// Exit if accessed directly.
+defined('ABSPATH') || exit;
 get_header(); ?>
+
+<?php
+// Initialize variables
+$post_id            = get_the_ID();
+$default_image_url  = get_template_directory_uri() . '/dist/images/default-hero-img.webp'; // Default image URL
+$featured_image_url = get_the_post_thumbnail_url($post_id, 'full'); // Attempt to get the featured image URL
+$category_terms     = get_the_terms($post_id, 'category'); // Get categories
+
+// Use default image if no featured image is set
+if (!$featured_image_url) {
+    $featured_image_url = $default_image_url;
+}
+
+// Output the section only if we have an image URL (which will always be true at this point)
+echo '<section class="container-fw hero-title-area" style="background-image: url(' . esc_url($featured_image_url) . ');">';
+echo '<div class="container"><div class="row"><div class="align-center text-center">';
+echo '<h1>' . get_the_title() . '</h1></div>';
+
+echo '</div></div></section>';
+
+?>
 
 <div class="container single-listing-container">
     <div class="row">
@@ -10,8 +30,6 @@ get_header(); ?>
         <!-- Main Content -->
         <div class="col-md-8 listing-content">
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-                
-                <h1 class="listing-title"><?php the_title(); ?></h1>
 
                 <?php
                 // ACF fields
@@ -22,80 +40,119 @@ get_header(); ?>
                 $short_desc   = get_field('short_description');
                 $gallery      = get_field('photo_gallery');
 
-                // Display featured image at top if you want
+                // If no gallery is set, use the featured image
+                $images_for_slider = array();
+
+                // 1) Featured image if it exists
                 if ( has_post_thumbnail() ) {
-                    the_post_thumbnail( 'large', [ 'class' => 'img-responsive mb-3' ] );
+                    $images_for_slider[] = array(
+                        'full_url' => get_the_post_thumbnail_url(get_the_ID(), 'full'),  // large or 'full'
+                        'thumb_url'=> get_the_post_thumbnail_url(get_the_ID(), 'large'),
+                        'alt'      => get_the_title()
+                    );
                 }
 
-                // Additional info fields
-                echo '<div class="listing-details">';
-                    if ( $price ) {
-                        // Format number with commas (e.g. 650000 -> 650,000)
-                        // Prepend the $ symbol
-                        $formatted_price = '$' . number_format($price);
+                // 2) ACF gallery images
+                if ( $gallery ) {
+                    foreach ( $gallery as $image ) {
+                        $images_for_slider[] = array(
+                            'full_url' => $image['url'],           // full size
+                            'thumb_url'=> $image['sizes']['large'], // or 'medium_large'
+                            'alt'      => $image['alt']
+                        );
+                    }
+                }
 
-                        echo '<div class="listing-price">' . esc_html($formatted_price) . '</div>';
-                    }
-                    if ( $bedrooms ) {
-                        echo '<div class="listing-bedrooms"><strong>Bedrooms:</strong> ' . esc_html( $bedrooms ) . '</div>';
-                    }
-                    if ( $bathrooms ) {
-                        echo '<div class="listing-bathrooms"><strong>Bathrooms:</strong> ' . esc_html( $bathrooms ) . '</div>';
-                    }
-                    if ( $sq_footage ) {
-                        // Format number with commas (e.g. 1800 -> 1,800)
-                        // Then append the “sqft” or “sq ft”
-                        $formatted_sqft = number_format($sq_footage) . ' sqft';
-                    
-                        echo '<div class="listing-sqft">' . esc_html($formatted_sqft) . '</div>';
-                    }
-                echo '</div>';
+                // If we have images, display Owl Carousel
+                if ( !empty($images_for_slider) ) : ?>
+                    <div class="owl-carousel owl-theme listing-featured-carousel mb-3">
+                        <?php foreach ( $images_for_slider as $img ) : ?>
+                            <div class="item">
+                                <!-- Wrap the image in a link to the full-size version -->
+                                <a href="<?php echo esc_url($img['full_url']); ?>" class="popup-image">
+                                    <img 
+                                        src="<?php echo esc_url($img['thumb_url']); ?>" 
+                                        alt="<?php echo esc_attr($img['alt']); ?>"
+                                        class="img-responsive"
+                                    />
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
 
+                <div class="listing-details d-flex flex-wrap justify-content-start">
+                    <?php if ( $price ) : ?>
+                        <div class="detail-box text-center">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span class="detail-text">
+                                <?php echo esc_html('$' . number_format($price)); ?>
+                            </span>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ( $bedrooms ) : ?>
+                        <div class="detail-box text-center">
+                            <i class="fas fa-bed"></i>
+                            <span class="detail-text">
+                                <?php echo esc_html($bedrooms . ' Bedrooms'); ?>
+                            </span>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ( $bathrooms ) : ?>
+                        <div class="detail-box text-center">
+                            <i class="fas fa-bath"></i>
+                            <span class="detail-text">
+                                <?php echo esc_html($bathrooms . ' Bathrooms'); ?>
+                            </span>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ( $sq_footage ) : ?>
+                        <div class="detail-box text-center">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span class="detail-text">
+                                <?php echo esc_html( number_format($sq_footage) . ' sqft' ); ?>
+                            </span>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                <?php
                 if ( $short_desc ) {
                     echo '<p class="listing-shortdesc">' . wp_kses_post( $short_desc ) . '</p>';
                 }
 
                 // The main content (if any) can be used for a longer property description
                 the_content();
-
-                // Gallery
-                if ( $gallery ) {
-                    echo '<div class="listing-gallery row">';
-                    foreach ( $gallery as $image ) {
-                        $thumb_url  = esc_url($image['sizes']['medium']);
-                        $full_url   = esc_url($image['url']);
-                        $alt        = esc_attr($image['alt']);
-
-                        echo '<div class="col-md-4 col-sm-6">';
-                            echo '<a href="' . $full_url . '" target="_blank">';
-                                echo '<img src="' . $thumb_url . '" alt="' . $alt . '" class="img-fluid listing-gallery-item" />';
-                            echo '</a>';
-                        echo '</div>';
-                    }
-                    echo '</div>';
-                }
                 ?>
 
             <?php endwhile; endif; ?>
+            <?php
+            // Title is the address
+            $address = get_the_title();
+
+            // url-encode it for a maps query
+            $encoded_address = urlencode($address);
+
+            // Simple Google Maps embed
+            ?>
+            <div class="listing-map">
+                <iframe
+                    width="100%"
+                    height="400"
+                    frameborder="0"
+                    style="border:0"
+                    src="https://www.google.com/maps?q=<?php echo $encoded_address; ?>&output=embed"
+                    allowfullscreen
+                >
+                </iframe>
+            </div>
+
         </div><!-- .col-md-8 -->
-
         <!-- Sidebar -->
-        <div class="col-md-4 listing-sidebar">
-            <aside class="widget related-properties">
-                <h3>Related Properties</h3>
-                <p>(Placeholder for related properties by taxonomy, location, etc.)</p>
-            </aside>
-
-            <aside class="widget open-houses">
-                <h3>Open Houses</h3>
-                <p>(Placeholder for future “Open House” CPT relationship)</p>
-            </aside>
-
-            <aside class="widget recent-posts">
-                <h3>From Our Blog</h3>
-                <p>(Placeholder for recent blog posts.)</p>
-            </aside>
-        </div><!-- .col-md-4 -->
+        <?php get_sidebar(); ?>
     </div><!-- .row -->
 </div><!-- .container -->
 

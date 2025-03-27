@@ -58,10 +58,7 @@
             }
         }
 
-        .listing-title {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
+                
 
         .listing-price {
             font-size: 1.6rem;
@@ -106,11 +103,12 @@
 
 // Example for the home page “Latest Listings” section
 .home-recent-listings {
-    margin: 3rem auto;
+    margin: 3rem auto 0;
 
     .card {
         background-color: #fff;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 10px;
 
         a {
             text-decoration: none;
@@ -129,6 +127,7 @@
             padding: 10px;
             .card-title {
                 font-size: 1.25rem;
+                font-weight: 300;
                 margin-bottom: 0.5rem;
 
                 a {
@@ -137,6 +136,131 @@
                     }
                 }
             }
+        }
+    }
+
+    .amre-btn {
+        margin: 30px auto;
+    }
+}
+
+.listing-featured-carousel {
+    position: relative; // So that absolutely positioned nav/dots remain inside
+
+    .item img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    // === Arrows (Nav) ===
+    .owl-nav {
+        // Ensure nav buttons are placed above slides
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; // We'll re-enable on the buttons themselves
+
+        button.owl-prev,
+        button.owl-next {
+            pointer-events: auto; // re-enable so the buttons are clickable
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            outline: none;
+            transition: background 0.2s ease;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.6);
+            }
+        }
+
+        button.owl-prev {
+            left: 10px; // move arrow to the left edge
+        }
+
+        button.owl-next {
+            right: 10px; // move arrow to the right edge
+        }
+    }
+
+    // === Dots ===
+    .owl-dots {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        display: flex !important; // ensures they line up horizontally
+        gap: 8px; // spacing between dots
+
+        .owl-dot {
+            span {
+                width: 10px;
+                height: 10px;
+                display: block;
+                background: rgba(255, 255, 255, 0.7);
+                border-radius: 50%;
+                cursor: pointer;
+                transition: background 0.2s;
+            }
+
+            &.active span {
+                background: rgba(255, 255, 255, 1);
+            }
+
+            &:hover span {
+                background: rgba(255, 255, 255, 1);
+            }
+        }
+    }
+}
+  
+.listing-map {
+    margin: 30px 0;
+}
+
+.listing-details {
+    /* If not using Bootstrap, you can explicitly do: */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+
+    .detail-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 2rem;
+        margin-bottom: 1rem;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 10px 20px;
+
+        i {
+            color: $secondary;
+            font-size: 1.4rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .detail-text {
+            font-weight: 600;
+            /* Or any style changes you want for the text */
         }
     }
 }
