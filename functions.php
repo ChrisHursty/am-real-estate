@@ -28,9 +28,14 @@ function amre_wp_theme_setup() {
     add_image_size('sidebar-thumb', 150, 150, true);
 
     // Register Navigation Menu
-    register_nav_menus( array(
-        'primary' => esc_html__( 'Primary Menu', 'amre-wp' ),
-    ) );
+    function amre_register_menus() {
+        register_nav_menus(array(
+          'header_left'  => __('Header Left Menu', 'amre-wp'),
+          'header_right' => __('Header Right Menu', 'amre-wp'),
+          'primary'      => __('Mobile Primary Menu', 'amre-wp'),
+        ));
+      }
+      add_action('init', 'amre_register_menus');
 
     // Add theme support for HTML5 and Title Tag
     add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'custom-fields' ) );

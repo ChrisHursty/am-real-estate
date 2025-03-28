@@ -103,9 +103,7 @@ if (is_singular('portfolio')) {
     </div>
 </section>
 
-<section class="cta">
-    <?php get_template_part('template-parts/call-to-action'); ?>
-</section>
+
 
 <?php
 get_footer();

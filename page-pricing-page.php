@@ -41,9 +41,7 @@ if (is_page()) {
     <?php get_template_part('template-parts/pricing'); ?>
 </section>
 
-<section class="cta">
-    <?php get_template_part('template-parts/call-to-action'); ?>
-</section>
+
 
 <?php
 get_footer();

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Single Post Template
  *
@@ -8,6 +7,7 @@
 
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
+
 get_header(); ?>
 
 <!-- Progress Bar Container -->
@@ -18,48 +18,61 @@ get_header(); ?>
 <?php
 // Initialize variables
 $post_id            = get_the_ID();
-$default_image_url  = get_template_directory_uri() . '/dist/images/default-hero-img.webp'; // Default image URL
-$featured_image_url = get_the_post_thumbnail_url($post_id, 'full'); // Attempt to get the featured image URL
-$category_terms     = get_the_terms($post_id, 'category'); // Get categories
+$default_image_url  = get_template_directory_uri() . '/dist/images/default-hero-img.webp';
+$featured_image_url = get_the_post_thumbnail_url($post_id, 'full');
+$category_terms     = get_the_terms($post_id, 'category');
 
-// Use default image if no featured image is set
+// Fallback if no featured image
 if (!$featured_image_url) {
     $featured_image_url = $default_image_url;
 }
-
-// Output the section only if we have an image URL (which will always be true at this point)
-echo '<section class="container-fw hero-title-area" style="background-image: url(' . esc_url($featured_image_url) . ');">';
-echo '<div class="container"><div class="row"><div class="align-center text-center">';
-echo '<h1>' . get_the_title() . '</h1></div>';
-
-// Check if there are categories and they are not WP errors
-if (!empty($category_terms) && !is_wp_error($category_terms)) {
-    echo '<div class="genre-container">'; // Changed class name from genre-container to category-container for clarity
-    foreach ($category_terms as $category_term) {
-        $category_link = get_term_link($category_term->term_id, 'category'); // Get category link
-        if (!is_wp_error($category_link)) {
-            echo '<div class="text-center genre-link"><a href="' . esc_url($category_link) . '">' . esc_html($category_term->name) . '</a></div>';
-        }
-    }
-    echo '</div>'; // Close category-container div
-}
-
-echo '</div></div></section>';
-
 ?>
-<section class="container content-bg">
+
+<section class="container single-post-hero text-center">
+    <!-- Post Title -->
+    <h1><?php echo esc_html( get_the_title() ); ?></h1>
+
+    <!-- Categories (comma-separated) -->
+    <?php
+    $category_terms = get_the_terms(get_the_ID(), 'category');
+    if (!empty($category_terms) && !is_wp_error($category_terms)) : ?>
+        <div class="post-categories mb-2">
+            <?php
+            // Build an array of linked category names
+            $linked_cats = array();
+            foreach ( $category_terms as $cat ) {
+                $cat_link = get_term_link( $cat->term_id, 'category' );
+                if ( ! is_wp_error($cat_link) ) {
+                    $linked_cats[] = '<a href="' . esc_url($cat_link) . '">' . esc_html($cat->name) . '</a>';
+                }
+            }
+            
+            // Print them, comma-separated
+            echo implode(', ', $linked_cats);
+            ?>
+        </div>
+    <?php endif; ?>
+
+    <!-- Featured Image -->
+    <?php if ($featured_image_url) : ?>
+        <div class="featured-image">
+            <img 
+                src="<?php echo esc_url($featured_image_url); ?>" 
+                alt="<?php echo esc_attr(get_the_title()); ?>" 
+                class="img-fluid" 
+            />
+        </div>
+    <?php endif; ?>
+</section>
+
+<section class="container content-bg slim-page">
     <div class="row">
-        <div class="col-sm-12 col-md-8 content">
+        <div class="col-12 align-center content">
             <div class="content-area">
                 <?php the_content(); ?>
             </div>
         </div>
-        <?php get_sidebar(); ?>
     </div><!-- .row -->
-</section>
-
-<section class="cta">
-    <?php get_template_part('template-parts/call-to-action'); ?>
 </section>
 
 <?php

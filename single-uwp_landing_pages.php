@@ -184,9 +184,7 @@ echo '<script type="application/ld+json">' . json_encode($schema) . '</script>';
         </div>
     </div>
 <?php endif; ?>
-<section class="cta">
-    <?php get_template_part('template-parts/call-to-action'); ?>
-</section>
+
 <?php
 // Ensure ACF is active
 if( function_exists('have_rows') && have_rows('mobile_buttons', 'option') ):

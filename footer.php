@@ -13,7 +13,7 @@ defined('ABSPATH') || exit;
 <footer id="colophon" class="site-footer">
     <div class="container">
         <div class="row">
-            <div class="col-4 align-center footer-logo">
+            <div class="col-2 align-center footer-logo">
                 <?php
                 $footer_logo = get_theme_mod('footer_logo');
                 if ($footer_logo) {

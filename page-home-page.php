@@ -58,7 +58,7 @@ $button_3_link = get_field('button_3_link');
                     <h2 class="intro"><?php echo wp_kses_post( $hero_intro ); ?></h2>
                 <?php endif; ?>
 
-                <div class="button-box">
+                <!-- <div class="button-box">
                     <?php if ( $button_1_text && $button_1_link ): ?>
                         <a href="<?php echo esc_url($button_1_link); ?>" class="amre-btn hero-btn">
                             <span><?php echo esc_html($button_1_text); ?></span>
@@ -76,30 +76,36 @@ $button_3_link = get_field('button_3_link');
                             <span><?php echo esc_html($button_3_text); ?></span>
                         </a>
                     <?php endif; ?>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 </section><!-- .home-hero -->
 
 <!-- About -->
-<section class="container-fw home-about light-bg">
+<section class="container-fw home-about">
     <div class="container">
         <div class="align-center">
-            <h2>About</h2>
+            <h2 class="upper">AM Real Estate Team</h2>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 about-content">
+            <div class="col-md-8 about-content">
             <?php 
                 $about_content = get_field('about'); 
                 if( $about_content ):
                     echo wp_kses_post($about_content); 
                 endif; 
                 ?>
+                <div class="align-center text-center">
+                    <a class="amre-btn" href="/contact">
+                        <span>Contact Us</span>
+                    </a>
+                </div>
+                
             </div>
-            <div class="col-md-6 about-image">
+            <div class="col-md-4 about-image">
             <?php 
             $about_image = get_field('about_image');
             if ($about_image) {
@@ -113,75 +119,77 @@ $button_3_link = get_field('button_3_link');
     </div>
 </section>
 
-<!-- Listings -->
-<?php
-$show_recent_listings = get_field('show_recent_listings');
-$num_recent_listings  = (int) get_field('num_recent_listings');
-
-if ( $show_recent_listings && $num_recent_listings > 0 ) :
-    // Query for the most recent listings
-    $args = array(
-        'post_type'      => 'listing',
-        'posts_per_page' => $num_recent_listings
-    );
-    $recent_listings = new WP_Query($args);
-
-    if ( $recent_listings->have_posts() ) : 
-?>
-    <section class="container-fw home-recent-listings light-bg">
-        <div class="container">
-            <div class="align-center">
-                <h2>Latest Listings</h2>
-            </div>
+<!-- Blog -->
+<section class="container-fw home-recent-blogs">
+    <div class="container">
+        <div class="align-center">
+            <h2 class="upper">From The Blog</h2>
         </div>
-        <div class="container">
+        <div class="row">
+            <?php
+            // Query for the 4 most recent blog posts
+            $recent_blogs = new WP_Query(array(
+                'post_type'      => 'post',
+                'posts_per_page' => 4,
+                'order'          => 'DESC',
+                'orderby'        => 'date'
+            ));
 
-            <div class="row">
-                <?php while ( $recent_listings->have_posts() ) : $recent_listings->the_post(); ?>
-                    <div class="col-sm-12 col-md-4 mb-4">
-                        <div class="listing-item card">
-                            <a href="<?php the_permalink(); ?>" class="img-link">
+            if ( $recent_blogs->have_posts() ) :
+                while ( $recent_blogs->have_posts() ) : 
+                    $recent_blogs->the_post(); 
+                    ?>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="blog-card">
+                            <!-- Featured Image -->
+                            <a href="<?php the_permalink(); ?>" class="blog-image-link">
                                 <?php 
-                                    if ( has_post_thumbnail() ) {
-                                        the_post_thumbnail('medium', ['class' => 'card-img-top']);
-                                    }
+                                if ( has_post_thumbnail() ) {
+                                    // Medium size is typically ~300px wide. 
+                                    // We'll square it in CSS.
+                                    the_post_thumbnail('medium', array('class' => 'blog-card-img'));
+                                } else {
+                                    // Fallback image (optional)
+                                    echo '<img src="'. esc_url(get_template_directory_uri() . '/images/blog-placeholder.jpg') .'" alt="Placeholder" class="blog-card-img" />';
+                                }
                                 ?>
                             </a>
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                </h4>
-                                <?php 
-                                    $price = get_field('price');
-                                    if ( $price ) :
-                                ?>
-                                    <p class="card-text">$<?php echo esc_html( number_format($price) ); ?></p>
-                                <?php endif; ?>
-                                <a href="<?php the_permalink(); ?>" class="amre-btn">
-                                    <span><?php _e('View Details', 'amre'); ?></span>
-                                    
+                            <!-- Title -->
+                            <h4 class="blog-card-title">
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php the_title(); ?>
                                 </a>
-                            </div>
+                            </h4>
                         </div>
                     </div>
-                <?php endwhile; ?>
-                <a class="amre-btn align-center" href="/listings"><span>View All Listings</span></a>
-            </div><!-- .row -->
-        </div> <!-- .container -->
-    </section>
-<?php 
-    endif;
-    wp_reset_postdata();
-endif;
-?>
-<!-- Testimonial Slider -->
-<section class="testimonials">
-    <?php get_template_part('template-parts/testimonial-slider'); ?>
-</section>
+                <?php 
+                endwhile; 
+                wp_reset_postdata();
+            else : 
+                // Optional: Show a message if no posts
+                echo '<div class="col-12"><p>No recent blog posts found.</p></div>';
+            endif;
+            ?>
+        </div><!-- .row -->
 
-<section class="cta">
-    <?php get_template_part('template-parts/call-to-action'); ?>
+        <!-- "View All" Button -->
+        <div class="align-center mt-3">
+            <?php 
+            // Typically /blog or page_for_posts:
+            $blog_page_url = get_permalink( get_option('page_for_posts') );
+            if ( ! $blog_page_url ) {
+                // Fallback if no static blog page is set
+                $blog_page_url = home_url('/blog');
+            }
+            ?>
+            <a class="amre-btn" href="<?php echo esc_url( $blog_page_url ); ?>">
+                <span>Read More</span>
+            </a>
+        </div>
+    </div><!-- .container -->
 </section>
-
+<section class="pricing">
+    <?php get_template_part('template-parts/newsletter'); ?>
+</section>
 <?php
 get_footer();

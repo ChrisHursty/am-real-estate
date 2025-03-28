@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (currentScroll > lastScrollTop && currentScroll > startSmartBehavior) {
             // Scrolling down and past 120px
-            header.style.top = '-110px'; // Adjust as needed
+            header.style.top = '-160px'; // Adjust as needed
         } else if (currentScroll <= lastScrollTop || currentScroll <= startSmartBehavior) {
             // Scrolling up or hasn't scrolled 120px yet
             header.style.top = '0';
