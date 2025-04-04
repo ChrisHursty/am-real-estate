@@ -143,7 +143,7 @@
                         font-size: 30px;
                         font-weight: 400;
                         margin: 0 0 10px 0;
-                        text-align: left;
+                        text-align: center;
                         word-break: break-word;
                     }
 
@@ -755,6 +755,169 @@
 
                     }
                 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div id="mlb2-24213189" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-24213189">
                     <div class="ml-form-align-center ">
                         <div class="ml-form-embedWrapper embedForm">
@@ -766,7 +929,7 @@
 
                                 <div class="ml-form-embedContent" style=" ">
 
-                                    <h4>AM Real Estate</h4>
+                                    <h4>STAY IN TOUCH</h4>
                                     <p>Sign up for our AM Real Estate newsletter to keep up with real estate news and happenings.</p>
 
                                 </div>
@@ -891,6 +1054,9 @@
                                         <script src="https://www.google.com/recaptcha/api.js"></script>
                                         <div class="g-recaptcha" data-sitekey="6Lf1KHQUAAAAAFNKEX1hdSWCS3mRMv4FlFaNslaD"></div>
                                     </div>
+
+
+
                                     <input type="hidden" name="ml-submit" value="1">
 
                                     <div class="ml-form-embedSubmit">

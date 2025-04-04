@@ -185,4 +185,39 @@ jQuery(document).ready(function($){
       // optional: add other settings for transitions, etc.
     });
   });
+
+
+jQuery(document).ready(function($){
+  $('.blog-posts-carousel').owlCarousel({
+    loop: true,          // or true if you want infinite looping
+    margin: 10,           // space between items
+    nav: true,            // show next/prev arrows
+    dots: true,          // we hide dots in CSS above
+    items: 4,             // show 4 posts at once on large screens
+    slideBy: 4,           // each click moves 4
+    navText: [
+      '<span class="owl-nav-prev">&lt;</span>',
+      '<span class="owl-nav-next">&gt;</span>'
+    ],
+    responsive: {
+      0: {
+        items: 1,
+        slideBy: 1
+      },
+      576: {
+        items: 2,
+        slideBy: 2
+      },
+      992: {
+        items: 3,
+        slideBy: 3
+      },
+      1200: {
+        items: 4,
+        slideBy: 4
+      }
+    }
+  });
+});
+
   

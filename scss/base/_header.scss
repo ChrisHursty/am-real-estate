@@ -8,32 +8,21 @@
 }
 
 .header-spacer {
-    margin-top: 140px;
+    margin-top: 110px;
 
-    @media (min-width: 1024px) and (max-width: 1180px) {
-        margin-top: 7vw;
-    }
-
-    @media (min-width: 768px) and (max-width: 1023px) {
-        margin-top: 7vw;
-    }
-
-    @media (min-width: 600px) and (max-width: 767px) {
-        margin-top: 10vw;
-    }
-
-    @media (max-width: 599px) {
-        margin-top: 12vw;
+    @media (max-width: 768px) {
+        margin-top: 70px
     }
 }
 
 .site-header {
+
     .nav-left,
     .nav-right {
         ul {
             display: flex;
             gap: 15px;
-            /* spacing between menu items */
+            justify-content: center;
             list-style: none;
 
             li {
@@ -42,42 +31,44 @@
                 @media (max-width: 71086px) {
                     margin: 0 10px;
                 }
+
                 a {
-                    color: $black;
+                    color: $header-color;
+                    font-weight: bold;
                     text-decoration: none;
                     text-transform: uppercase;
                 }
 
-            } 
+            }
         }
     }
 }
-  
+
 .site-header {
-    background-color: $light-gray;
-    border-bottom: 2px solid $secondary;
+    background-color: $header-bg;
+    border-radius: 0 0 20px 20px;
     font-family: $heading;
 
-    @media (min-width: 768px) {
+    @media (min-width: 1023px) {
         .desktop-only {
             display: block !important;
         }
-        
+
         .mobile-only {
             display: none !important;
         }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
         .desktop-only {
             display: none !important;
         }
-        
+
         .mobile-only {
             display: block !important;
         }
     }
-    
+
     .container {
         display: flex;
         align-items: center;
@@ -93,47 +84,43 @@
     }
 
     .site-branding {
-        padding: 5px 0;
-        width: 100px;
+        padding: 15px 0;
+        width: 262px;
 
-        @media (max-width: 1086px) {
-            width: 100px;
-        }
-        
         a {
             display: block;
 
             img {
                 max-width: 100%;
             }
-            
+
             @media (max-width: 768px) {
                 margin-left: 15px;
             }
         }
 
         @media (max-width: 768px) {
-            padding-top: 0;
-            width: 10%;
+            padding: 0;
+            width: 180px;
         }
     }
 
     .menu-toggle {
         display: none;
-        
-        @media (max-width: 768px) {
+
+        @media (max-width: 1024px) {
             display: block;
             margin-right: 15px;
-            
+
             .hamburger {
                 font-size: 24px;
 
                 &:hover {
                     cursor: pointer;
                 }
-            
+
                 &:before {
-                    color: $primary;
+                    color: $white;
                 }
             }
 
@@ -187,7 +174,7 @@
 
                 &:hover {
                     background-color: $white;
-    
+
                     a {
                         color: $primary;
                     }
@@ -259,7 +246,7 @@
         .menu-close {
             display: none; // Initially hidden
             position: absolute;
-            top: 30px;
+            top: 40px;
             right: 20px;
             color: $primary; // Adjust as needed
             font-size: 24px; // Adjust as needed
@@ -267,15 +254,16 @@
             &:hover {
                 cursor: pointer;
             }
-    
+
             @media (max-width: 768px) {
                 display: block; // Show only in mobile view
             }
-    
+
             // More styles as needed...
         }
-    
+
         &.toggled {
+
             // Styles when menu is toggled
             .menu-close {
                 display: block; // Ensure it's visible when menu is open
@@ -291,7 +279,7 @@
                 gap: 20px;
                 justify-content: center;
                 margin-bottom: 20px;
-        
+
                 a {
                     background-color: $white;
                     border-radius: 50%;
@@ -303,11 +291,11 @@
                     align-items: center;
                     text-decoration: none;
                     transition: opacity 0.5s ease;
-        
+
                     i {
                         font-size: 1.2em;
                     }
-        
+
                     &:hover {
                         opacity: .75;
                     }
@@ -322,10 +310,126 @@
         }
     }
 
-    @media (min-width: 769px) {
+    @media (min-width: 1025px) {
         .menu-toggle {
             display: none;
         }
     }
 }
 
+/* 1) WIDE SCREENS (≥ 1176px)
+   ----------------------------------------- */
+@media (min-width: 1176px) {
+    .site-header {
+        .container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .nav-left,
+        .nav-right {
+            width: 100%;
+            display: flex;
+        }
+
+
+        /* The logo is in the middle (auto) column, always centered */
+        .site-branding {
+            width: auto !important;
+            /* override any fixed width */
+            text-align: center;
+
+            a img {
+                max-width: 250px;
+                /* optional, so the logo doesn’t get huge */
+                height: auto;
+            }
+        }
+    }
+}
+
+/* Basic reset: hide them all by default */
+.header-desktop-large,
+.header-desktop-medium,
+.header-mobile {
+    display: none;
+}
+
+/* ========== Mobile (< 1025px) ========== */
+@media (max-width: 1024px) {
+    .header-mobile {
+        display: block;
+        /* show the mobile version */
+    }
+}
+
+/* ========== Medium Desktop (1025px–1175px) ========== */
+@media (min-width: 1025px) and (max-width: 1175px) {
+    .header-desktop-medium {
+        display: block;
+    }
+}
+
+/* ========== Large Desktop (≥ 1176px) ========== */
+@media (min-width: 1176px) {
+    .header-desktop-large {
+        display: block;
+    }
+}
+
+/* 
+   Then style .header-desktop-large container with your 
+   3-column layout for the nav-left / branding / nav-right 
+   if you want (like you had).
+*/
+.header-desktop-large .container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-items: center;
+
+    .nav-left {
+        justify-content: flex-end;
+        padding-right: 20px;
+    }
+
+    .nav-right {
+        justify-content: flex-start;
+        padding-left: 20px;
+    }
+}
+
+.header-desktop-medium .container {
+    /* Usually a column layout: branding on top, nav row below */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .nav-row {
+        display: flex;
+        margin-top: 1rem;
+    }
+
+    .nav-left,
+    .nav-right {
+        display: flex;
+    }
+
+    .nav-left {
+        margin: 0 10px 0 0;
+        /* spacing between them */
+    }
+
+    .nav-right {
+        margin: 0 0 0 10px;
+        /* spacing between them */
+    }
+}
+
+.header-mobile .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

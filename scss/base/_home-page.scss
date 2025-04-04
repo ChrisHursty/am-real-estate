@@ -29,7 +29,7 @@
     }
 
     .hero-content-wrapper {
-        background-color: $black;
+        background-color: $cream;
         padding: 30px;
         position: relative;
         z-index: 3;
@@ -45,17 +45,17 @@
         }
 
         h1 {
-            color: $white;
-            font-size: clamp(28px, 4.8vw, 64px);
+            color: $black;
+            font-size: clamp(28px, 3.2vw, 52px);
             letter-spacing: 1px;
             font-weight: 300;
             margin-bottom: 30px;
         }
 
         h2.intro {
-            color: $white;
+            color: $black;
             font-family: $sub-heading;
-            font-size: clamp(24px, 2.4vw, 48px);
+            font-size: clamp(24px, 1.8vw, 436px);
             font-weight: 100;
             line-height: 1.6;
             margin-bottom: 20px;
@@ -76,7 +76,7 @@
 }
 
 .home-about {
-    padding: 30px 0;
+    padding: 45px 0 30px;
 
     @media (max-width: 767px) {
         padding: 15px;
@@ -85,15 +85,6 @@
     .about-content {
         align-content: center;
         padding-right: 30px;
-
-        @media (max-width: 767px) {
-            padding: 15px;
-        }
-    }
-
-    h2 {
-        text-transform: uppercase;
-        margin-bottom: 20px;
     }
 
     p {
@@ -103,26 +94,42 @@
             font-size: 1em;
         }
     }
+
+    .amre-btn {
+        margin: 30px 0 45px;
+    }
+}
+
+h2 {
+    color: $primary;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
 }
 
 .home-recent-blogs {
-    padding: 2rem 0;
+    margin: 30px 0;
+    padding: 30px 0;
+    @media (max-width: 767px) {
+        padding: 15px;
+    }
 
     .blog-card {
         margin-bottom: 2rem;
-        padding: 0 10px;
+        padding: 0 10px 0 0;
 
         .blog-image-link {
             display: block;
             margin: 0 auto;
             width: 100%;
             max-width: 300px;
+            height: 160px;
+            overflow: hidden;
         }
 
         .blog-card-img {
             width: 100%;
             height: auto;
-            aspect-ratio: 1 / 1;
             object-fit: cover;
             display: block;
             margin: 0 auto;
@@ -137,6 +144,7 @@
             text-transform: uppercase;
 
             a {
+                color: $primary;
                 text-decoration: none;
 
                 &:hover {
@@ -145,4 +153,100 @@
             }
         }
     }
+
+    .amre-btn {
+        margin: 30px 0 45px;
+    }
+
+    /* Owl Nav Arrows */
+    .owl-nav {
+        /* Place the nav as a small vertical row on the right side */
+        position: absolute;
+        top: -40px;
+        right: 10px;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        button.owl-prev,
+        button.owl-next {
+            color: $primary;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: background 0.2s ease;
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+  
+    .owl-dots {
+        display: none;
+    }
+}
+
+.blog-search {
+    margin: 0 0 70px;
+
+    .search-label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: $primary;
+    }
+
+    .searchform {
+        position: relative;
+        margin: 0 auto;
+
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.2rem;
+            pointer-events: none;
+            /* so clicks pass through to input */
+        }
+
+        .search-field {
+            width: 100%;
+            padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+            /* left padding leaves space for icon */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            color: #333;
+
+            &::placeholder {
+                color: #aaa;
+            }
+
+            &:focus {
+                outline: none;
+                border-color: #666;
+            }
+        }
+    }
+}
+  
+
+.border-top {
+    border-top: 1px solid $primary;
+}
+
+
+.ml-subscribe-form {
+    border: 1px solid $primary;
+    margin-bottom: 60px !important;
 }

@@ -1,11 +1,9 @@
 <?php
 /**
  * The header for our theme
- *
+ * 
  * @package AMRE WP
  */
-
-// Exit if accessed directly.
 defined('ABSPATH') || exit;
 ?>
 <!DOCTYPE html>
@@ -18,22 +16,20 @@ defined('ABSPATH') || exit;
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <meta name="description" content="<?php echo esc_attr(get_field('meta_description', 'option')); ?>">
     <?php wp_head(); ?>
-    <meta property="fb:app_id" content="1391362941486769" />
-    <meta name="facebook-domain-verification" content="w3x2ukvsqcbn2elzi15xgxvnaxu36z" />
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7028927369766320"
-     crossorigin="anonymous"></script>
 </head>
 
 <body <?php body_class(); ?>>
-    <?php do_action('wp_body_open'); ?>
-    <div class="site" id="page">
+<?php do_action('wp_body_open'); ?>
+<div class="site" id="page">
 
-        <!-- ******************* The Navbar Area ******************* -->
-        <header id="masthead" class="site-header">
+    <!-- ******************* The Navbar Area ******************* -->
+    <header id="masthead" class="site-header">
+
+        <!-- === 1. Large Desktop Header (≥1176px) === -->
+        <div class="header-desktop-large">
             <div class="container d-flex align-items-center justify-content-between">
-
-                <!-- === Left Menu (Desktop Only) === -->
-                <nav class="nav-left desktop-only" aria-label="Left Menu">
+                <!-- Left Menu -->
+                <nav class="nav-left" aria-label="Left Menu">
                     <?php
                     wp_nav_menu(array(
                         'theme_location' => 'header_left',
@@ -43,7 +39,7 @@ defined('ABSPATH') || exit;
                     ?>
                 </nav>
 
-                <!-- === Logo (always visible, centered on desktop) === -->
+                <!-- Site Branding -->
                 <div class="site-branding text-center">
                     <?php
                     if (has_custom_logo()) {
@@ -57,8 +53,8 @@ defined('ABSPATH') || exit;
                     ?>
                 </div>
 
-                <!-- === Right Menu (Desktop Only) === -->
-                <nav class="nav-right desktop-only" aria-label="Right Menu">
+                <!-- Right Menu -->
+                <nav class="nav-right" aria-label="Right Menu">
                     <?php
                     wp_nav_menu(array(
                         'theme_location' => 'header_right',
@@ -67,18 +63,79 @@ defined('ABSPATH') || exit;
                     ));
                     ?>
                 </nav>
+            </div>
+        </div>
 
-                <!-- === Hamburger Toggle (Mobile Only) === -->
-                <button class="menu-toggle mobile-only" aria-controls="primary-menu" aria-expanded="false">
+        <!-- === 2. Medium Desktop Header (1025px–1175px) === -->
+        <div class="header-desktop-medium">
+            <div class="container d-flex flex-column align-items-center">
+                
+                <!-- Branding on top row -->
+                <div class="site-branding text-center">
+                    <?php
+                    if (has_custom_logo()) {
+                        the_custom_logo();
+                    } else {
+                        echo '<a href="' . esc_url(home_url('/')) . '" rel="home">
+                                <img src="' . esc_url(get_template_directory_uri() . '/dist/images/default-logo.svg') . '" 
+                                     alt="' . esc_attr(get_bloginfo('name')) . '">
+                              </a>';
+                    }
+                    ?>
+                </div>
+
+                <!-- Menus below in one row. 
+                     We can do nav-left and nav-right side by side in a single row, etc. -->
+                <div class="d-flex justify-content-center align-items-center mt-2 nav-row">
+                    <nav class="nav-left" aria-label="Left Menu">
+                        <?php
+                        wp_nav_menu(array(
+                            'theme_location' => 'header_left',
+                            'menu_id'        => 'left-menu-med',
+                            'container'      => false,
+                        ));
+                        ?>
+                    </nav>
+                    <nav class="nav-right" aria-label="Right Menu">
+                        <?php
+                        wp_nav_menu(array(
+                            'theme_location' => 'header_right',
+                            'menu_id'        => 'right-menu-med',
+                            'container'      => false,
+                        ));
+                        ?>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- === 3. Mobile Hamburger (below 1025px) === -->
+        <div class="header-mobile mobile-only">
+            <div class="container d-flex align-items-center justify-content-between">
+                <!-- Logo or anything you like on mobile -->
+                <div class="site-branding text-center">
+                    <?php
+                    if (has_custom_logo()) {
+                        the_custom_logo();
+                    } else {
+                        echo '<a href="' . esc_url(home_url('/')) . '" rel="home">
+                                <img src="' . esc_url(get_template_directory_uri() . '/dist/images/default-logo.svg') . '" 
+                                     alt="' . esc_attr(get_bloginfo('name')) . '">
+                              </a>';
+                    }
+                    ?>
+                </div>
+
+                <!-- Hamburger Toggle -->
+                <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
                     <span class="hamburger fas fa-bars"></span>
                 </button>
             </div>
 
-            <!-- === Mobile Navigation Slide-out === -->
-            <nav role="navigation" aria-label="Mobile Menu" id="site-navigation" class="main-navigation mobile-only">
+            <!-- Mobile Navigation Slide-out -->
+            <nav role="navigation" aria-label="Mobile Menu" id="site-navigation" class="main-navigation">
                 <button class="menu-close fas fa-times"></button>
                 <?php
-                // This is the mobile menu location
                 wp_nav_menu(array(
                     'theme_location' => 'primary',
                     'menu_id'        => 'primary-menu',
@@ -86,37 +143,9 @@ defined('ABSPATH') || exit;
                     'container'      => false,
                 ));
                 ?>
-
-                <!-- Hamburger Socials (Mobile Only) -->
-                <div class="social-media">
-                    <?php
-                    if (have_rows('social_profiles', 'option')) {
-                        while (have_rows('social_profiles', 'option')) {
-                            the_row();
-                            $profile_url = get_sub_field('profile_url');
-                            $icon_type   = get_sub_field('icon_type');
-                            $icon_color  = get_sub_field('icon_color');
-
-                            echo '<a href="' . esc_url($profile_url) . '" 
-                                      style="color:' . esc_attr($icon_color) . ';" 
-                                      target="_blank" 
-                                      rel="noopener noreferrer">';
-
-                            if ($icon_type === 'fontawesome') {
-                                $fontawesome_class = get_sub_field('fontawesome_class');
-                                echo '<i class="fab ' . esc_attr($fontawesome_class) . '"></i>';
-                            } else if ($icon_type === 'svg') {
-                                $svg_icon_url = get_sub_field('svg_icon');
-                                echo '<img src="' . esc_url($svg_icon_url) . '" alt="Social Icon" 
-                                           style="fill:' . esc_attr($icon_color) . ';">';
-                            }
-
-                            echo '</a>';
-                        }
-                    }
-                    ?>
-                </div>
+                <!-- Socials, etc. -->
             </nav>
-        </header>
+        </div>
 
-        <div class="header-spacer"></div>
+    </header>
+    <div class="header-spacer"></div>

@@ -1,22 +1,40 @@
 // Import fonts
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 // Variables
+// #228B22 Forest Green
+// #FFFDD0 Cream
+
+$forestgreen: #163b06; // Deep Forest Green
+$lime: #eeffd7; // Pale Lime
+$softgreen: #b5d56e; // Soft Green
+$olivegreen: #303c1b; // Dark Olive Green
+$mossgreen: #4b5f4a; // Moss Green
+
 $black: #001c28;
 $white: #e5dbd4;
-$primary: #244554; // Slate Gray/Blue
+$primary: #3f5a36; // Slate Gray/Blue
 $secondary: #6bc2c1; // Torquiose
 $dark-gray: #363636;
 $light-gray: #f4f4f4;
 $navy: #033c75; // Navy
+$green: #228B22;
+$cream: #FFFDD0;
+
+$header-bg: $primary;
+$header-color: $white;
+$header-border: $primary;
+$header-border-color: $primary;
+$footer-bg: $primary;
+$footer-color: $white;
 
 $footer-top-color: $black;
 $footer-bottom-color: $black;
 
 // Fonts
-$heading: 'Oswald', sans-serif;
-$sub-heading: 'Montserrat', sans-serif;
-$body: 'Montserrat', sans-serif;
+$heading: 'Roboto', sans-serif;
+$sub-heading: 'Roboto', sans-serif;
+$body: 'Roboto', sans-serif;
 
 // Base Styles
 @import 'base/reset';
