@@ -417,7 +417,15 @@ add_action('wp_head', 'amre_debug_fonts', 0);
  * Set Google Fonts API Key
  */
 function amre_set_google_fonts_api_key() {
-    return 'AIzaSyD687mDoNj02NPybHBKwTFMBkHE_mXHZO8';
+    // Check if the API key file exists
+    $api_key_file = get_template_directory() . '/inc/google-fonts-api-key.php';
+    if (file_exists($api_key_file)) {
+        require_once $api_key_file;
+        return amre_get_google_fonts_api_key();
+    }
+    
+    // Return a placeholder if the file doesn't exist
+    return 'YOUR_GOOGLE_FONTS_API_KEY';
 }
 add_filter('amre_google_fonts_api_key', 'amre_set_google_fonts_api_key');
 

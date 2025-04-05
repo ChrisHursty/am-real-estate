@@ -15,3 +15,10 @@ wp-config.php
 
 # Zipped Exports
 .zip
+
+# API Keys and Sensitive Data
+inc/api-keys.php
+.env
+api-keys.php
+google-api-key.php
+inc/google-fonts-api-key.php
