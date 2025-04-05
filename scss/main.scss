@@ -1,6 +1,3 @@
-// Import fonts
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
 // Variables
 // #228B22 Forest Green
 // #FFFDD0 Cream
@@ -31,10 +28,10 @@ $footer-color: $white;
 $footer-top-color: $black;
 $footer-bottom-color: $black;
 
-// Fonts
-$heading: 'Roboto', sans-serif;
-$sub-heading: 'Roboto', sans-serif;
-$body: 'Roboto', sans-serif;
+// Fonts - Using CSS variables populated by customizer
+$heading: var(--heading-font-family);
+$sub-heading: var(--heading-font-family);
+$body: var(--body-font-family);
 
 // Base Styles
 @import 'base/reset';
@@ -45,7 +42,6 @@ $body: 'Roboto', sans-serif;
 
 @import 'base/header';
 @import 'base/footer';
-@import 'base/cta';
 @import 'base/testimonials-slider';
 @import 'base/home-page';
 @import 'base/portfolio-grid.scss';
@@ -57,3 +53,84 @@ $body: 'Roboto', sans-serif;
 @import 'base/archive.scss';
 @import 'base/sidebar.scss';
 @import 'base/listings.scss';
+
+.home-hero {
+    
+    .hero-slideshow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        
+        .hero-slide {
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    }
+
+    .hero-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 2;
+
+        .container, .row, .col-sm-12 {
+            height: 100%;
+        }
+
+        .col-sm-12 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-light {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 275px;
+            height: 275px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+
+            svg {
+                width: 100%;
+                height: 100%;
+                max-width: 275px;
+                max-height: 275px;
+            }
+
+            @media (max-width: 768px) {
+                width: 200px;
+                height: 200px;
+            }
+        }
+
+        .intro {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            max-width: 80%;
+
+            @media (max-width: 768px) {
+                font-size: 14px !important;
+                width: 170px;
+            }
+
+        }
+    }
+}

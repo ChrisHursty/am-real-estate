@@ -127,25 +127,25 @@ defined('ABSPATH') || exit;
                 </div>
 
                 <!-- Hamburger Toggle -->
-                <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-                    <span class="hamburger fas fa-bars"></span>
+                <button class="menu-toggle" aria-controls="mobile-menu" aria-expanded="false">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
                 </button>
             </div>
 
             <!-- Mobile Navigation Slide-out -->
-            <nav role="navigation" aria-label="Mobile Menu" id="site-navigation" class="main-navigation">
-                <button class="menu-close fas fa-times"></button>
+            <nav id="mobile-menu" class="main-navigation" aria-label="Mobile Menu">
+                <button class="menu-close">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'primary',
-                    'menu_id'        => 'primary-menu',
+                    'menu_id'        => 'mobile-menu-items',
                     'menu_class'     => 'menu-list',
                     'container'      => false,
                 ));
                 ?>
-                <!-- Socials, etc. -->
             </nav>
         </div>
 
     </header>
-    <div class="header-spacer"></div>

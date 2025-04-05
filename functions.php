@@ -16,6 +16,8 @@ require_once get_template_directory() . '/inc/theme-options.php';
 require_once get_template_directory() . '/inc/cpts.php';
 // Widgets
 require get_template_directory() . '/inc/widgets.php';
+// Google Fonts
+require_once get_template_directory() . '/inc/google-fonts.php';
 
 function amre_wp_theme_setup() {
     // Add theme support for Automatic Feed Links
@@ -74,6 +76,7 @@ function amre_wp_scripts_styles() {
     // Theme JS
     wp_enqueue_script('amre-wp-main-js', get_template_directory_uri() . '/dist/js/main.min.js', array('jquery'), '1.0.0', true);
     wp_enqueue_script('amre-smart-header-js', get_template_directory_uri() . '/dist/js/smart-header.min.js', array(), '1.0.0', true);
+    wp_enqueue_script('amre-mobile-menu-js', get_template_directory_uri() . '/js/custom.js', array('jquery'), '1.0.0', true);
 
     // Check if we are on a single post or the single-portfolio.php template
     if (is_single() && (is_singular('post') || is_singular('portfolio'))) {
@@ -121,9 +124,6 @@ add_action('admin_head', 'fix_svg_thumb_display');
 function ccs_custom_css() {
   $hero_btn_bg_color   = get_theme_mod('hero_button_bg_color');
   $hero_btn_text_color = get_theme_mod('hero_button_text_color');
-  $cta_btn_bg_color    = get_theme_mod('button_background_color');
-  $cta_btn_text_color  = get_theme_mod('button_text_color');
-  // ... any other theme_mod values
  
   $custom_css = "
       /* Customizer CSS */
@@ -143,18 +143,6 @@ function ccs_custom_css() {
 
       .hero-button:hover span {
           color: $hero_btn_bg_color !important;
-      }
-
-      .cta-button {
-          border: 4px solid $cta_btn_text_color !important;
-      }
-
-      .cta-button:hover {
-          background-color: $cta_btn_text_color !important;
-          border: 4px solid $cta_btn_text_color !important;
-      }
-      .cta-button:hover span {
-          color: $cta_btn_bg_color !important;
       }
       /* ... any other custom CSS */
   ";
@@ -298,4 +286,160 @@ function amre_add_listings_to_search($query) {
     }
 }
 add_action('pre_get_posts','amre_add_listings_to_search');
+
+/**
+ * Output customizer styles
+ */
+function amre_wp_customizer_css() {
+    // Get font selections from customizer
+    $heading_font = get_theme_mod('heading_font_family', 'Bungee Shade');
+    $body_font = get_theme_mod('body_font_family', 'Alex Brush');
+    $heading_weight = get_theme_mod('heading_font_weight', 'normal');
+    $heading_transform = get_theme_mod('heading_font_transform', 'none');
+
+    // Debug output for administrators
+    if (current_user_can('manage_options')) {
+        echo "<!-- Font Debug:
+        Heading Font: " . esc_html($heading_font) . "
+        Body Font: " . esc_html($body_font) . "
+        Heading Weight: " . esc_html($heading_weight) . "
+        -->";
+    }
+    ?>
+    <style type="text/css">
+        /* Heading font styles */
+        h1, h2, h3, h4, h5, h6,
+        .site-title,
+        .entry-title,
+        .page-title,
+        .section-title,
+        .heading-font {
+            font-family: '<?php echo esc_attr($heading_font); ?>', cursive;
+            font-weight: <?php echo esc_attr($heading_weight); ?>;
+            text-transform: <?php echo esc_attr($heading_transform); ?>;
+        }
+
+        /* Body font styles */
+        body,
+        p, 
+        li, 
+        a:not(h1 a):not(h2 a):not(h3 a):not(h4 a):not(h5 a):not(h6 a), 
+        div:not(.heading-font), 
+        span:not(.heading-font), 
+        blockquote, 
+        cite, 
+        input, 
+        textarea, 
+        select, 
+        button {
+            font-family: '<?php echo esc_attr($body_font); ?>', cursive;
+        }
+
+        /* Header Styles */
+        .site-header {
+            background-color: <?php echo get_theme_mod('header_transparent', false) ? 'transparent' : esc_attr(get_theme_mod('header_bg_color', '#3f5a36')); ?>;
+            color: <?php echo esc_attr(get_theme_mod('header_font_color', '#ffffff')); ?>;
+            font-weight: <?php echo esc_attr(get_theme_mod('header_font_weight', 'normal')); ?>;
+            border-bottom-left-radius: <?php echo esc_attr(get_theme_mod('header_border_radius', '0')); ?>px;
+            border-bottom-right-radius: <?php echo esc_attr(get_theme_mod('header_border_radius', '0')); ?>px;
+        }
+
+        .site-header,
+        .site-header a,
+        .site-header .site-description,
+        .main-navigation a {
+            color: <?php echo esc_attr(get_theme_mod('header_font_color', '#ffffff')); ?>;
+            font-family: '<?php echo esc_attr($heading_font); ?>', cursive;
+            font-weight: <?php echo esc_attr(get_theme_mod('header_font_weight', 'normal')); ?>;
+            font-size: <?php echo esc_attr(get_theme_mod('header_font_size', '16')); ?>px;
+        }
+
+        /* Footer Styles */
+        .site-footer {
+            background-color: <?php echo esc_attr(get_theme_mod('footer_bg_color', '#3f5a36')); ?>;
+        }
+
+        .site-footer,
+        .site-footer a,
+        .site-footer p,
+        .site-footer li {
+            color: <?php echo esc_attr(get_theme_mod('footer_font_color', '#ffffff')); ?>;
+            font-weight: <?php echo esc_attr(get_theme_mod('footer_font_weight', 'normal')); ?>;
+        }
+
+        /* Layout */
+        .container {
+            max-width: <?php echo esc_attr(get_theme_mod('container_width', '1200')); ?>px;
+        }
+
+        /* Spacing */
+        section {
+            padding: <?php echo esc_attr(get_theme_mod('section_padding', '60')); ?>px 0;
+        }
+
+        /* Button Spacing */
+        .wp-block-button__link,
+        .button,
+        button,
+        input[type="button"],
+        input[type="reset"],
+        input[type="submit"],
+        .amre-btn {
+            margin-top: <?php echo esc_attr(get_theme_mod('button_vertical_spacing', '15')); ?>px;
+            margin-bottom: <?php echo esc_attr(get_theme_mod('button_vertical_spacing', '15')); ?>px;
+            padding-top: <?php echo esc_attr(get_theme_mod('button_vertical_spacing', '15')); ?>px;
+            padding-bottom: <?php echo esc_attr(get_theme_mod('button_vertical_spacing', '15')); ?>px;
+        }
+    </style>
+    <?php
+}
+add_action('wp_head', 'amre_wp_customizer_css', 1);
+
+/**
+ * Debug font loading
+ */
+function amre_debug_fonts() {
+    if (current_user_can('manage_options')) {
+        $heading_font = get_theme_mod('heading_font_family', 'Roboto');
+        $body_font = get_theme_mod('body_font_family', 'Open Sans');
+        $heading_weight = get_theme_mod('heading_font_weight', 'normal');
+        
+        echo "<!-- Font Debug:
+        Heading Font: " . esc_html($heading_font) . "
+        Heading Weight: " . esc_html($heading_weight) . "
+        Body Font: " . esc_html($body_font) . "
+        -->";
+    }
+}
+add_action('wp_head', 'amre_debug_fonts', 0);
+
+/**
+ * Set Google Fonts API Key
+ */
+function amre_set_google_fonts_api_key() {
+    return 'AIzaSyD687mDoNj02NPybHBKwTFMBkHE_mXHZO8';
+}
+add_filter('amre_google_fonts_api_key', 'amre_set_google_fonts_api_key');
+
+/**
+ * Clear fonts cache and force refresh
+ */
+function amre_clear_fonts_cache() {
+    delete_transient('amre_google_fonts_list');
+    delete_option('amre_google_fonts_version');
+    add_option('amre_google_fonts_version', time());
+    wp_cache_delete('amre_google_fonts_list', 'transient');
+}
+add_action('init', 'amre_clear_fonts_cache');
+
+/**
+ * Add version to Google Fonts URL
+ */
+function amre_add_google_fonts_version($url) {
+    if (strpos($url, 'fonts.googleapis.com') !== false) {
+        $url = add_query_arg('ver', get_option('amre_google_fonts_version', time()), $url);
+    }
+    return $url;
+}
+add_filter('style_loader_src', 'amre_add_google_fonts_version', 10, 1);
 

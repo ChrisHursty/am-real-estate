@@ -19,19 +19,9 @@ $slides = get_field('hero_gallery');
 $hero_heading = get_field('hero_heading');
 $hero_intro   = get_field('hero_intro');
 
-// Get button text and link fields (3 buttons)
-$button_1_text = get_field('button_1_text');
-$button_1_link = get_field('button_1_link');
-
-$button_2_text = get_field('button_2_text');
-$button_2_link = get_field('button_2_link');
-
-$button_3_text = get_field('button_3_text');
-$button_3_link = get_field('button_3_link');
 ?>
 
 <section class="container-fw home-hero">
-    
     <!-- Slideshow wrapper -->
     <?php if ( $slides ): ?>
         <div class="hero-slideshow">
@@ -43,41 +33,23 @@ $button_3_link = get_field('button_3_link');
         </div>
     <?php endif; ?>
 
-    <!-- Gradient overlay -->
-    <div class="hero-overlay"></div>
-
     <!-- Hero content -->
-    <!-- <div class="container hero-content-wrapper"> -->
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 align-center text-center">
-                <!-- <?php if ( $hero_heading ): ?>
-                    <h1><?php echo wp_kses_post( $hero_heading ); ?></h1>
-                <?php endif; ?>
-
-                <?php if ( $hero_intro ): ?>
-                    <h2 class="intro"><?php echo wp_kses_post( $hero_intro ); ?></h2>
-                <?php endif; ?> -->
-
-                <!-- <div class="button-box">
-                    <?php if ( $button_1_text && $button_1_link ): ?>
-                        <a href="<?php echo esc_url($button_1_link); ?>" class="amre-btn hero-btn">
-                            <span><?php echo esc_html($button_1_text); ?></span>
-                        </a>
+    <div class="hero-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 align-center text-center text-container">
+                    <?php 
+                    $hero_text_background = get_field('hero_text_background_shape');
+                    if ($hero_text_background) {
+                        $image_url = $hero_text_background['url'];
+                        $alt_text = !empty($hero_text_background['alt']) ? $hero_text_background['alt'] : 'Background Shape';
+                        echo '<div class="hero-light" style="background-image: url(\'' . esc_url($image_url) . '\');"></div>';
+                    }
+                    ?>
+                    <?php if ( $hero_intro ): ?>
+                        <h2 class="intro"><?php echo wp_kses_post( $hero_intro ); ?></h2>
                     <?php endif; ?>
-
-                    <?php if ( $button_2_text && $button_2_link ): ?>
-                        <a href="<?php echo esc_url($button_2_link); ?>" class="amre-btn white-btn">
-                            <span><?php echo esc_html($button_2_text); ?></span>
-                        </a>
-                    <?php endif; ?>
-
-                    <?php if ( $button_3_text && $button_3_link ): ?>
-                        <a href="<?php echo esc_url($button_3_link); ?>" class="amre-btn hero-btn">
-                            <span><?php echo esc_html($button_3_text); ?></span>
-                        </a>
-                    <?php endif; ?>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
@@ -86,30 +58,18 @@ $button_3_link = get_field('button_3_link');
 <!-- About -->
 <section class="container-fw home-about">
     <div class="container">
-        <div class="">
-            <h2 class="upper">AM Real Estate Team</h2>
+        <div class="text-center">
+            <h2>AM Real Estate Team</h2>
         </div>
     </div>
     <div class="container">
-        <!-- <div class="row">
-            <div class="col-md-2 about-image align-center">
-            <?php 
-            $about_image = get_field('about_image');
-            if ($about_image) {
-                $image_url = $about_image['url'];
-                $alt_text = !empty($about_image['alt']) ? $about_image['alt'] : 'Ashly Merced Real Estate NY'; // Fallback alt text if none is provided
-                echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($alt_text) . '">';
-            }
-            ?>
-            </div>
-        </div>.row -->
         <div class="row">
             <div class="col-md-12 about-content align-center">
-            <?php 
+                <?php 
                 $about_content = get_field('about'); 
-                if( $about_content ):
+                if ($about_content) {
                     echo wp_kses_post($about_content); 
-                endif; 
+                }
                 ?>
                 <div class="align-center text-center">
                     <a class="amre-btn" href="/contact">
@@ -124,7 +84,7 @@ $button_3_link = get_field('button_3_link');
 <!-- Blog -->
 <section class="container-fw home-recent-blogs border-top">
     <div class="container">
-        <h2 class="upper">Blog &amp; News</h2>
+        <h2>Blog &amp; News</h2>
     </div>
     <div class="container">
         <!-- Blog Search Bar -->
@@ -144,7 +104,7 @@ $button_3_link = get_field('button_3_link');
                         <input type="search" name="s" class="search-field" placeholder="Search" 
                             value="<?php echo get_search_query(); ?>" />
                         
-                        <!-- Optional submit button if you don’t want to rely on pressing Enter -->
+                        <!-- Optional submit button if you don't want to rely on pressing Enter -->
                         <!-- <button type="submit" class="search-submit">Search</button> -->
                     </form>
                 </div>

@@ -44,25 +44,16 @@
             flex-direction: column-reverse;
         }
 
-        h1 {
-            color: $black;
-            font-size: clamp(28px, 3.2vw, 52px);
-            letter-spacing: 1px;
-            font-weight: 300;
-            margin-bottom: 30px;
+        .text-container {
+            max-width: 280px;
+            width: 100%;
         }
 
         h2.intro {
-            color: $black;
             font-family: $sub-heading;
-            font-size: clamp(24px, 1.8vw, 436px);
+            font-size: 20px;
             font-weight: 100;
             line-height: 1.6;
-            margin-bottom: 20px;
-
-            @media (max-width: 767px) {
-                font-size: 1em;
-            }
         }
     }
 
@@ -76,7 +67,6 @@
 }
 
 .home-about {
-    padding: 45px 0 30px;
 
     @media (max-width: 767px) {
         padding: 15px;
@@ -94,16 +84,10 @@
             font-size: 1em;
         }
     }
-
-    .amre-btn {
-        margin: 30px 0 45px;
-    }
 }
 
 h2 {
     color: $primary;
-    font-weight: bold;
-    text-transform: uppercase;
     margin-bottom: 20px;
 }
 
@@ -137,11 +121,9 @@ h2 {
         }
 
         .blog-card-title {
-            font-family: $heading;
             font-size: 1rem;
             font-weight: 600;
             margin-top: 1rem;
-            text-transform: uppercase;
 
             a {
                 color: $primary;
@@ -152,10 +134,6 @@ h2 {
                 }
             }
         }
-    }
-
-    .amre-btn {
-        margin: 30px 0 45px;
     }
 
     /* Owl Nav Arrows */
