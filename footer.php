@@ -8,8 +8,17 @@
 
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
+$hero_intro = get_field('hero_intro');
 ?>
-
+<div class="above-footer container">
+    <div class="row">
+        <div class="col-12 text-center align-center">
+        <?php if ( $hero_intro ): ?>
+                <h2 class="intro"><?php echo wp_kses_post( $hero_intro ); ?></h2>
+        <?php endif; ?>
+        </div>
+    </div>
+</div>
 <footer id="colophon" class="site-footer">
     <div class="container">
         <div class="row">

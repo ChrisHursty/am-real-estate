@@ -357,13 +357,17 @@ function amre_wp_customizer_css() {
         /* Footer Styles */
         .site-footer {
             background-color: <?php echo esc_attr(get_theme_mod('footer_bg_color', '#3f5a36')); ?>;
+            font-family: '<?php echo esc_attr($heading_font); ?>', cursive !important;
         }
 
         .site-footer,
         .site-footer a,
         .site-footer p,
-        .site-footer li {
+        .site-footer li,
+        .footer-text,
+        .copyright-text {
             color: <?php echo esc_attr(get_theme_mod('footer_font_color', '#ffffff')); ?>;
+            font-family: '<?php echo esc_attr($heading_font); ?>', cursive !important;
             font-weight: <?php echo esc_attr(get_theme_mod('footer_font_weight', 'normal')); ?>;
         }
 

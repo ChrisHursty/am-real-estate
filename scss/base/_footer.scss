@@ -7,7 +7,6 @@ footer {
 
     .footer-logo,
     .footer-text {
-        margin-bottom: 20px;
 
         a {
             color: $footer-color;
@@ -26,7 +25,6 @@ footer {
         margin-bottom: 20px;
 
         a {
-            background-color: $footer-color;
             border-radius: 50%;
             display: inline-block;
             height: 36px;
@@ -50,10 +48,4 @@ footer {
     .copyright-text {
         font-size: 0.75em;
     }
-}
-
-@media (max-width: 768px) {
-    // footer:before {
-    //     display: none;
-    // }
 }

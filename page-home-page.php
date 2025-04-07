@@ -46,9 +46,9 @@ $hero_intro   = get_field('hero_intro');
                         echo '<div class="hero-light" style="background-image: url(\'' . esc_url($image_url) . '\');"></div>';
                     }
                     ?>
-                    <?php if ( $hero_intro ): ?>
+                    <!-- <?php if ( $hero_intro ): ?>
                         <h2 class="intro"><?php echo wp_kses_post( $hero_intro ); ?></h2>
-                    <?php endif; ?>
+                    <?php endif; ?> -->
                 </div>
             </div>
         </div>
