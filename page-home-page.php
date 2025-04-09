@@ -59,7 +59,7 @@ $hero_intro   = get_field('hero_intro');
 <section class="container-fw home-about">
     <div class="container">
         <div class="text-center">
-            <h2>AM Real Estate Team</h2>
+            <h2>A.M. Real Estate Team</h2>
         </div>
     </div>
     <div class="container">
