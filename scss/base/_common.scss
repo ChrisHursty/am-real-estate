@@ -92,11 +92,10 @@ figure {
     }
 
     &:hover {
-        background-color: $secondary;
-        color: $white;
+        background-color: $white;
 
         span, a {
-            color: $primary;
+            color: $forestgreen;
         }
     }
 }

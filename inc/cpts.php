@@ -306,3 +306,50 @@ function amre_register_listing_taxonomies() {
     register_taxonomy( 'property_type', array( 'listing' ), $args_type );
 }
 add_action( 'init', 'amre_register_listing_taxonomies' );
+
+/**
+ * Register Neighborhoods CPT
+ */
+function amre_register_cpt_neighborhoods() {
+    $labels = array(
+        'name'                  => _x('Neighborhoods', 'Post type general name', 'amre'),
+        'singular_name'         => _x('Neighborhood', 'Post type singular name', 'amre'),
+        'menu_name'             => _x('Neighborhoods', 'Admin Menu text', 'amre'),
+        'name_admin_bar'        => _x('Neighborhood', 'Add New on Toolbar', 'amre'),
+        'add_new'               => __('Add New', 'amre'),
+        'add_new_item'          => __('Add New Neighborhood', 'amre'),
+        'new_item'              => __('New Neighborhood', 'amre'),
+        'edit_item'             => __('Edit Neighborhood', 'amre'),
+        'view_item'             => __('View Neighborhood', 'amre'),
+        'all_items'             => __('All Neighborhoods', 'amre'),
+        'search_items'          => __('Search Neighborhoods', 'amre'),
+        'parent_item_colon'     => __('Parent Neighborhoods:', 'amre'),
+        'not_found'             => __('No neighborhoods found.', 'amre'),
+        'not_found_in_trash'    => __('No neighborhoods found in Trash.', 'amre'),
+        'featured_image'        => _x('Neighborhood Cover Image', 'Overrides the “Featured Image” phrase', 'amre'),
+        'set_featured_image'    => _x('Set neighborhood cover image', 'Overrides the “Set featured image” phrase', 'amre'),
+        'remove_featured_image' => _x('Remove neighborhood cover image', 'Overrides the “Remove featured image” phrase', 'amre'),
+        'use_featured_image'    => _x('Use as neighborhood cover image', 'Overrides the “Use as featured image” phrase', 'amre'),
+        'archives'              => _x('Neighborhood archives', 'The post type archive label', 'amre'),
+        'insert_into_item'      => _x('Insert into neighborhood', 'Overrides the “Insert into post” phrase', 'amre'),
+        'uploaded_to_this_item' => _x('Uploaded to this neighborhood', 'Overrides the “Uploaded to this post” phrase', 'amre'),
+        'filter_items_list'     => _x('Filter neighborhoods list', 'Screen reader text', 'amre'),
+        'items_list_navigation' => _x('Neighborhoods list navigation', 'Screen reader text', 'amre'),
+        'items_list'            => _x('Neighborhoods list', 'Screen reader text', 'amre'),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'description'        => __('Neighborhood listings for your site.', 'amre'),
+        'public'             => true,                   // Visible on the front end
+        'has_archive'        => true,                   // Creates archive-neighborhoods.php
+        'rewrite'            => array('slug' => 'neighborhoods'), 
+        'menu_position'      => 5,                      // Below Posts
+        'menu_icon'          => 'dashicons-admin-site', // pick your favorite dashicon
+        'supports'           => array('title', 'editor', 'thumbnail', 'excerpt'),
+        'show_in_rest'       => true,                   // for Gutenberg / block editor
+    );
+
+    register_post_type('neighborhoods', $args);
+}
+add_action('init', 'amre_register_cpt_neighborhoods');

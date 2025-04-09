@@ -8,38 +8,17 @@
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
 get_header();
-
-// Featured Image Background and Title for a regular page
-if (is_page()) {
-    $post_id = get_the_ID();
-    $featured_image_url = get_the_post_thumbnail_url($post_id, 'full');
-
-    // Define a default image URL
-    $default_image_url = get_template_directory_uri() . '/dist/images/default-hero-img.webp';
-
-    // Use the featured image if available, otherwise use the default
-    $background_image_url = $featured_image_url ? $featured_image_url : $default_image_url;
-
-    echo '<section class="container-fw hero-title-area" style="background-image: url(' . esc_url($background_image_url) . ');">';
-    echo '<div class="container"><div class="row"><div class="align-center text-center">';
-    echo '<h1>' . get_the_title() . '</h1>';
-    echo '</div></div></div></section>';
-}
 ?>
-<div class="container-fw light-bg">
-    <div class="container intro-paragraph">
+<section>
+    <div class="container">
         <div class="row">
-            <div class="col-12 col-md-8 align-center">
-                <?php 
-                $about_content = get_field('intro_paragraph'); 
-                if( $about_content ):
-                    echo wp_kses_post($about_content); 
-                endif; 
-                ?>
+            <div class="col-md-12 text-center">
+                <h1><?php the_title(); ?></h1>
             </div>
         </div>
-    </div>        
-</div>
+    </div>
+</section>
+
 <!-- Grid Repeater -->
 <section class="container-fw content-bg">
     <div class="container">
@@ -81,7 +60,10 @@ if (is_page()) {
                                 <p class="grid-description"><?php echo esc_html($description); ?></p>
                             <?php endif; ?>
                             <?php if ($button_text && $button_link) : ?>
-                                <a class="grid-btn" href="<?php echo esc_url($button_link); ?>"><?php echo esc_html($button_text); ?></a>
+                                
+                                <a class="grid-btn" href="<?php echo esc_url($button_link); ?>">
+                                    <span><?php echo esc_html($button_text); ?></span>
+                                </a>
                             <?php endif; ?>
                         </div>
                     </div>
