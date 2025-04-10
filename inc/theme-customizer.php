@@ -169,7 +169,7 @@ function amre_wp_customize_register( $wp_customize ) {
     ));
 
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'primary_color', array(
-        'label' => __('Primary Color', 'amre-wp'),
+        'label' => __('Primary Color (Headings)', 'amre-wp'),
         'section' => 'color_section',
     )));
 
@@ -180,7 +180,7 @@ function amre_wp_customize_register( $wp_customize ) {
     ));
 
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'secondary_color', array(
-        'label' => __('Secondary Color', 'amre-wp'),
+        'label' => __('Secondary Color (Body Text)', 'amre-wp'),
         'section' => 'color_section',
     )));
 

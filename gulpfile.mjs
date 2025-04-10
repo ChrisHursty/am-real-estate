@@ -36,7 +36,7 @@ function minifyJs() {
 }
 
 function serve() {
-    browserSyncInstance.init({ proxy: "http://localhost:10008/" });
+    browserSyncInstance.init({ proxy: "http://amrealestateny.local/" });
 
     // Watch SCSS files for changes, compile and minify them
     watch('scss/**/*.scss', compileSass);

@@ -5,9 +5,13 @@
  * @package AMRE
  */
 
-get_header(); ?>
+get_header();
+$distance   = get_field('distance_from_manhattan');
+$map_embed  = get_field('google_map_embed_code'); 
+
 ?>
-<section>
+
+<section class="container-fw single-neighborhood-title">
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
@@ -17,7 +21,7 @@ get_header(); ?>
     </div>
 </section>
 
-<div class="container single-neighborhood-container">
+<div class="container single-neighborhood-container slim-page">
     <div class="row">
         <div class="col-12 align-center">
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
@@ -32,30 +36,24 @@ get_header(); ?>
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container neighborhood-container slim-page">
     <div class="row">
-        <div class="col-md-12 align-center slim-page">
+        <div class="col-md-6 map">
+            <?php echo $map_embed; ?>
+        </div>
+        <div class="col-md-6 info">
+            <h2><?php the_title(); ?></h2>
+            <p><strong>Distance from Manhattan:</strong> <?php echo $distance; ?></p>
+        </div>
+    </div>
+</div>
+<div class="container neighborhood-content slim-page">
+    <div class="row">
+        <div class="col-md-12 align-center">
             <!-- Neighborhood Content -->
-            <div class="neighborhood-content">
+            <div class="">
                 <?php the_content(); ?>
             </div>
-
-            <!-- Excerpt / Summary if you want -->
-            <?php if ( has_excerpt() ) : ?>
-                <div class="neighborhood-excerpt">
-                    <?php the_excerpt(); ?>
-                </div>
-            <?php endif; ?>
-
-            <!-- If needed, custom fields or meta data can go here -->
-            
-            <!-- For example, you might have ACF fields: population, main attractions, etc. -->
-            <?php if ( function_exists('the_field') ) : ?>
-                <div class="neighborhood-extra-info">
-                    <p><strong>Population:</strong> <?php the_field('population'); ?></p>
-                    <p><strong>Main Attractions:</strong> <?php the_field('main_attractions'); ?></p>
-                </div>
-            <?php endif; ?>
         </div>
     </div>
 </div>

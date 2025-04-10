@@ -296,6 +296,8 @@ function amre_wp_customizer_css() {
     $body_font = get_theme_mod('body_font_family', 'Alex Brush');
     $heading_weight = get_theme_mod('heading_font_weight', 'normal');
     $heading_transform = get_theme_mod('heading_font_transform', 'none');
+    $primary_color = get_theme_mod('primary_color', '#000000');
+    $secondary_color = get_theme_mod('secondary_color', '#ffffff');
 
     // Debug output for administrators
     if (current_user_can('manage_options')) {
@@ -314,6 +316,7 @@ function amre_wp_customizer_css() {
         .page-title,
         .section-title,
         .heading-font {
+            color: <?php echo esc_attr($primary_color); ?> !important;
             font-family: '<?php echo esc_attr($heading_font); ?>', cursive;
             font-weight: <?php echo esc_attr($heading_weight); ?>;
             text-transform: <?php echo esc_attr($heading_transform); ?>;
@@ -332,6 +335,7 @@ function amre_wp_customizer_css() {
         textarea, 
         select, 
         button {
+            color: <?php echo esc_attr($secondary_color); ?>;
             font-family: '<?php echo esc_attr($body_font); ?>', cursive;
         }
 

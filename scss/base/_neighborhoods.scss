@@ -1,0 +1,24 @@
+.single-neighborhood-title {
+    margin-top: 140px;
+}
+
+.neighborhood-container {
+    margin-top: 35px;
+    justify-content: center;
+
+    .row {
+        align-items: center;
+
+        .info {
+            padding-left: 30px;
+
+            @media (max-width: 767px) {
+                padding: 15px; 
+            }
+        }
+    }
+}
+
+.neighborhood-content {
+    margin-top: 35px;
+}
