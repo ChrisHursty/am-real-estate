@@ -10,27 +10,35 @@
 defined('ABSPATH') || exit;
 get_header();
 ?>
-<section class="container-fw hero-title-area" style="background-image: url('<?php echo the_field('archive_bg_image', 'option'); ?>');">
+<section class="title-header">
     <div class="container">
         <div class="row">
-            <div class="col-12 align-center text-center">
+            <div class="col-md-12 text-center">
                 <h1><?php the_field('archive_title', 'option'); ?></h1>
             </div>
         </div>
+    </div>
 </section>
 
-<section class="container content-bg">
+<section class="container content-bg blog-archive">
     <div class="row">
         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                <div class="col-md-6 single-card">
-                    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-                        <?php if (has_post_thumbnail()) : ?>
-                            <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title_attribute(); ?>">
-                        <?php endif; ?>
-                        <div class="content">
-                            <h3><?php the_title(); ?></h3>
-                            <a href="<?php the_permalink(); ?>" class="amre-btn white-btn"><span>Read More</span></a>
-                        </div>
+                <div class="col-md-3 col-sm-12 archive-card">
+                    <?php if ( has_post_thumbnail() ) : ?>
+                        <a href="<?php the_permalink(); ?>">
+                            <?php the_post_thumbnail('medium', ['class' => 'img-fluid card-img']); ?>
+                        </a>
+                    <?php endif; ?>
+                    <h2 class="archive-card-title">
+                        <a href="<?php the_permalink(); ?>">
+                            <?php the_title(); ?>
+                        </a>
+                    </h2>
+                    <div class="archive-card-excerpt">
+                        <?php the_excerpt(); ?>
+                    </div>
+                    <a href="<?php the_permalink(); ?>" class="archive-btn">
+                        <?php _e('Read More →', 'amre'); ?>
                     </a>
                 </div>
             <?php endwhile;
@@ -41,7 +49,4 @@ get_header();
 
     </div><!-- .row -->
 </section>
-
-
-
 <?php get_footer(); ?>

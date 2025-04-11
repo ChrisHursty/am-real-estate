@@ -341,13 +341,13 @@ function amre_register_cpt_neighborhoods() {
     $args = array(
         'labels'             => $labels,
         'description'        => __('Neighborhood listings for your site.', 'amre'),
-        'public'             => true,                   // Visible on the front end
-        'has_archive'        => true,                   // Creates archive-neighborhoods.php
+        'public'             => true,
+        'has_archive'        => true,
         'rewrite'            => array('slug' => 'neighborhoods'), 
-        'menu_position'      => 5,                      // Below Posts
-        'menu_icon'          => 'dashicons-admin-site', // pick your favorite dashicon
+        'menu_position'      => 5,
+        'menu_icon'          => 'dashicons-admin-site',
         'supports'           => array('title', 'editor', 'thumbnail', 'excerpt'),
-        'show_in_rest'       => true,                   // for Gutenberg / block editor
+        'show_in_rest'       => true,
     );
 
     register_post_type('neighborhoods', $args);
