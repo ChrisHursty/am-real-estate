@@ -9,14 +9,7 @@
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
 get_header();
-?>
 
-<!-- Progress Bar Container -->
-<div id="progressBarContainer">
-    <div id="progressBar"></div>
-</div>
-
-<?php
 // Featured Img BG, Title and Genre
 if (is_singular('portfolio')) {
     $post_id            = get_the_ID();

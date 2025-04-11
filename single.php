@@ -10,11 +10,6 @@ defined('ABSPATH') || exit;
 
 get_header(); ?>
 
-<!-- Progress Bar Container -->
-<div id="progressBarContainer">
-    <div id="progressBar"></div>
-</div>
-
 <?php
 // Initialize variables
 $post_id            = get_the_ID();

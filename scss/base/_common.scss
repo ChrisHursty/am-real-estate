@@ -8,6 +8,18 @@ body.admin-bar {
     margin-top: 32px !important;
 }
 
+.title-header {
+    margin-top: 140px;
+
+    @media (min-width: 1024px) and (max-width: 1175px) {
+        margin-top: 180px;
+    }
+
+    @media (max-width: 767px) {
+        padding: 15px;
+    }
+}
+
 a {
     color: $primary;
     text-decoration: underline;
@@ -161,7 +173,6 @@ figure {
 
 .content-bg {
     background-color: #fff;
-    margin-top: 30px;
     margin-bottom: 30px;
 
     .row {

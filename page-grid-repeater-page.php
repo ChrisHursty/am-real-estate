@@ -9,7 +9,7 @@
 defined('ABSPATH') || exit;
 get_header();
 ?>
-<section>
+<section class="title-header">
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
@@ -22,7 +22,7 @@ get_header();
 <!-- Grid Repeater -->
 <section class="container-fw content-bg">
     <div class="container">
-        <div class="row">
+        <div class="row grid-row">
             <?php if (have_rows('grid_repeater')) : ?>
                 <?php
                 $total_items = count(get_field('grid_repeater')); // Count the total repeater items
@@ -75,7 +75,7 @@ get_header();
     </div>
     <div class="container">
         <div class="row">
-            <a class="amre-btn align-center" target="_blank" rel="nofollow noopener" href="https://johannaclark.glossgenius.com/"><span>Book An Appointment<i style="margin-left: 6px;" class="fas fa-external-link-alt"></i></span></a>
+            <a class="amre-btn align-center" href="/contact"><span>Contact Us</span></a>
         </div>
     </div>
     
