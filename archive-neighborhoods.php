@@ -6,42 +6,42 @@
  */
 
 get_header(); ?>
+<section class="title-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1><?php post_type_archive_title();?></h1>
+            </div>
+        </div>
+    </div>
+</section>
 
 <div class="container archive-neighborhoods-container">
-    
-    <header class="mb-4">
-        <h1 class="archive-title">
-            <?php post_type_archive_title(); // Will display "Neighborhoods" ?>
-        </h1>
-    </header>
-
     <?php if ( have_posts() ) : ?>
         <div class="row">
             <?php while ( have_posts() ) : the_post(); ?>
                 
-                <div class="col-md-4 mb-4">
-                    <div class="neighborhood-card">
-                        
-                        <?php if ( has_post_thumbnail() ) : ?>
-                            <a href="<?php the_permalink(); ?>">
-                                <?php the_post_thumbnail('medium', ['class' => 'img-fluid mb-2']); ?>
-                            </a>
-                        <?php endif; ?>
-                        
-                        <h2 class="neighborhood-card-title">
-                            <a href="<?php the_permalink(); ?>">
-                                <?php the_title(); ?>
-                            </a>
-                        </h2>
-                        
-                        <div class="neighborhood-card-excerpt">
-                            <?php the_excerpt(); ?>
-                        </div>
-
-                        <a href="<?php the_permalink(); ?>" class="btn btn-primary mt-2">
-                            <?php _e('Learn More', 'amre'); ?>
+                <div class="col-md-3 col-sm-12 neighborhood-card">
+                    
+                    <?php if ( has_post_thumbnail() ) : ?>
+                        <a href="<?php the_permalink(); ?>">
+                            <?php the_post_thumbnail('medium', ['class' => 'img-fluid card-img']); ?>
                         </a>
+                    <?php endif; ?>
+                    
+                    <h2 class="neighborhood-card-title">
+                        <a href="<?php the_permalink(); ?>">
+                            <?php the_title(); ?>
+                        </a>
+                    </h2>
+                    
+                    <div class="neighborhood-card-excerpt">
+                        <?php the_excerpt(); ?>
                     </div>
+
+                    <a href="<?php the_permalink(); ?>" class="neighborhood-btn">
+                        <?php _e('Read More →', 'amre'); ?>
+                    </a>
                 </div><!-- .col -->
                 
             <?php endwhile; ?>

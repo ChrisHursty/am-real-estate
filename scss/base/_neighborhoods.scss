@@ -9,6 +9,12 @@
     .row {
         align-items: center;
 
+        .map {
+            @media (max-width: 600px) {
+                margin: 10px auto;
+            }
+        }
+
         .info {
             padding-left: 30px;
 
@@ -21,4 +27,50 @@
 
 .neighborhood-content {
     margin-top: 35px;
+    
+    @media (max-width: 767px) {
+        padding: 15px; 
+    }
+}
+
+.archive-neighborhoods-container {
+
+    .neighborhood-card {
+        padding: 20px 10px;
+
+        .card-img {
+            border-radius: 3px;
+            width: 100%;
+        }
+
+        h2.neighborhood-card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 10px;
+            line-height: 1.5;
+
+            a {
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .neighborhood-card-excerpt p {
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+
+        .neighborhood-btn {
+            font-size: 14px;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 }

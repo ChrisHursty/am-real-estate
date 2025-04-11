@@ -9,11 +9,6 @@
 defined('ABSPATH') || exit;
 get_header(); ?>
 
-<!-- Progress Bar Container -->
-<div id="progressBarContainer">
-    <div id="progressBar"></div>
-</div>
-
 <?php
 // Featured Image Background and Title
 if (has_post_thumbnail()) {
