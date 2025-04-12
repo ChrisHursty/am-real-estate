@@ -10,17 +10,8 @@
 defined('ABSPATH') || exit;
 get_header();
 ?>
-<section class="title-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <h1><?php the_field('archive_title', 'option'); ?></h1>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="container content-bg blog-archive">
+<section class="container content-bg blog-archive title-header">
     <div class="row">
         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                 <div class="col-md-3 col-sm-12 archive-card">

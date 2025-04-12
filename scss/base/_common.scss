@@ -16,7 +16,7 @@ body.admin-bar {
     }
 
     @media (max-width: 767px) {
-        margin-top: 100px;
+        margin-top: 100px !important;
         padding: 15px;
     }
 }
