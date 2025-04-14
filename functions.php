@@ -459,3 +459,15 @@ function amre_add_google_fonts_version($url) {
 }
 add_filter('style_loader_src', 'amre_add_google_fonts_version', 10, 1);
 
+function amre_excerpt_to_chars($excerpt) {
+    // 80 characters, for instance
+    $limit = 160;
+    $excerpt = strip_shortcodes(strip_tags($excerpt));
+
+    if ( mb_strlen($excerpt) > $limit ) {
+        $excerpt = mb_substr($excerpt, 0, $limit, 'UTF-8') . '…';
+    }
+    return $excerpt;
+}
+add_filter('get_the_excerpt', 'amre_excerpt_to_chars');
+

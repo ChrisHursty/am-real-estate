@@ -73,8 +73,8 @@
     }
 
     .site-branding {
-        padding: 15px 0;
-        width: 262px;
+        padding: 0;
+        width: 100px;
 
         a {
             display: block;
@@ -90,7 +90,7 @@
 
         @media (max-width: 768px) {
             padding: 0;
-            width: 180px;
+            width: 100px;
         }
     }
 
@@ -328,7 +328,7 @@
             text-align: center;
 
             a img {
-                max-width: 250px;
+                max-width: 130px;
                 /* optional, so the logo doesn't get huge */
                 height: auto;
             }

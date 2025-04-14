@@ -97,14 +97,14 @@
 
     h1 {
         display: block;
-        margin-bottom: 20px;
         text-align: center;
         text-transform: uppercase;
     }
 
     .post-categories {
         color: $secondary;
-        margin-bottom: 20px;
+        font-size: 12px;
+        margin-bottom: 10px;
         text-decoration: none;
         text-transform: uppercase;
 
@@ -117,17 +117,13 @@
         max-width: 100%;
         margin: 0 auto;
         display: block;
-        /* ensures the container can center well in some contexts */
 
         img {
             display: block;
             margin: 0 auto;
-            /* center the image if the container isn't full width */
             max-width: 100%;
-            /* responsive scaling */
             height: auto;
             border-radius: 4px;
-            /* optional rounded corners */
         }
     }
 }

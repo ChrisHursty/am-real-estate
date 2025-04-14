@@ -9,14 +9,14 @@ body.admin-bar {
 }
 
 .title-header {
-    margin-top: 140px;
+    margin-top: 156px;
 
     @media (min-width: 1024px) and (max-width: 1175px) {
-        margin-top: 180px;
+        margin-top: 210px;
     }
 
     @media (max-width: 767px) {
-        margin-top: 100px !important;
+        margin-top: 110px !important;
         padding: 15px;
     }
 }
