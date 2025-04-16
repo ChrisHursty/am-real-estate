@@ -17,3 +17,25 @@ document.addEventListener('DOMContentLoaded', function() {
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     }, false);
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const dropdowns = document.querySelectorAll('.navbar-nav .dropdown');
+  
+    dropdowns.forEach(function (dropdown) {
+      let timeout;
+  
+      dropdown.addEventListener('mouseenter', function () {
+        clearTimeout(timeout);
+        const menu = dropdown.querySelector('.dropdown-menu');
+        if (menu) menu.style.display = 'block';
+      });
+  
+      dropdown.addEventListener('mouseleave', function () {
+        const menu = dropdown.querySelector('.dropdown-menu');
+        timeout = setTimeout(() => {
+          if (menu) menu.style.display = 'none';
+        }, 200); // Delay makes hover feel natural
+      });
+    });
+  });
+  

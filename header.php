@@ -35,6 +35,9 @@ defined('ABSPATH') || exit;
                         'theme_location' => 'header_left',
                         'menu_id'        => 'left-menu',
                         'container'      => false,
+                        'menu_class'     => 'navbar-nav',
+                        'walker'         => new WP_Bootstrap_Navwalker(),
+                        'depth'          => 2, // Needed for dropdowns
                     ));
                     ?>
                 </nav>
@@ -60,6 +63,9 @@ defined('ABSPATH') || exit;
                         'theme_location' => 'header_right',
                         'menu_id'        => 'right-menu',
                         'container'      => false,
+                        'menu_class'     => 'navbar-nav',
+                        'walker'         => new WP_Bootstrap_Navwalker(),
+                        'depth'          => 2, // Needed for dropdowns
                     ));
                     ?>
                 </nav>
@@ -93,6 +99,9 @@ defined('ABSPATH') || exit;
                             'theme_location' => 'header_left',
                             'menu_id'        => 'left-menu-med',
                             'container'      => false,
+                            'menu_class'     => 'navbar-nav',
+                            'walker'         => new WP_Bootstrap_Navwalker(),
+                            'depth'          => 2, // Needed for dropdowns
                         ));
                         ?>
                     </nav>
@@ -102,6 +111,9 @@ defined('ABSPATH') || exit;
                             'theme_location' => 'header_right',
                             'menu_id'        => 'right-menu-med',
                             'container'      => false,
+                            'menu_class'     => 'navbar-nav',
+                            'walker'         => new WP_Bootstrap_Navwalker(),
+                            'depth'          => 2, // Needed for dropdowns
                         ));
                         ?>
                     </nav>
@@ -143,6 +155,9 @@ defined('ABSPATH') || exit;
                     'menu_id'        => 'mobile-menu-items',
                     'menu_class'     => 'menu-list',
                     'container'      => false,
+                    'menu_class'     => 'navbar-nav',
+                    'walker'         => new WP_Bootstrap_Navwalker(),
+                    'depth'          => 2, // Needed for dropdowns
                 ));
                 ?>
             </nav>

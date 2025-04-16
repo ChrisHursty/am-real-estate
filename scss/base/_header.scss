@@ -494,3 +494,61 @@
         transform: translateY(0);
     }
 }
+
+.navbar-nav {
+    a > span {
+        color: #fff !important;
+        font-family: 'IM Fell English SC', cursive !important;
+    }
+
+    a:hover > span {
+        color: $secondary !important;
+        transition: color 0.5s ease;
+    }
+
+    .dropdown {
+        position: relative;
+
+        // 🔥 Fix: Keep menu open when hovering parent OR submenu
+        &:hover .dropdown-menu,
+        .dropdown-menu:hover,
+        .dropdown:focus-within .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 1px); // 🔧 Tighten this if there's a flicker
+            left: 0;
+            min-width: 180px;
+            background-color: #000;
+            border: 1px solid #fff;
+            z-index: 999;
+            padding: 10px 0;
+
+            a {
+                color: #fff;
+                padding: 10px 20px;
+                display: block;
+                margin: 0;
+                white-space: nowrap;
+
+                &:hover {
+                    background-color: #333;
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    .dropdown-toggle::after {
+        content: " ▾";
+        font-size: 0.7em;
+        margin-left: 5px;
+    }
+}
+
+
+
+  

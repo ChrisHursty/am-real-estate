@@ -18,6 +18,9 @@ require_once get_template_directory() . '/inc/cpts.php';
 require get_template_directory() . '/inc/widgets.php';
 // Google Fonts
 require_once get_template_directory() . '/inc/google-fonts.php';
+// Navwalker
+require_once get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
+
 
 function amre_wp_theme_setup() {
     // Add theme support for Automatic Feed Links
