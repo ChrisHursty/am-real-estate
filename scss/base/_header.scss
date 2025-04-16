@@ -18,6 +18,8 @@
             gap: 15px;
             justify-content: center;
             list-style: none;
+            margin-top: 5px;
+            margin-bottom: 15px;
 
             li {
                 margin: 0 20px;
@@ -74,7 +76,7 @@
 
     .site-branding {
         padding: 0;
-        width: 100px;
+        width: 80px;
 
         a {
             display: block;
@@ -328,7 +330,7 @@
             text-align: center;
 
             a img {
-                max-width: 130px;
+                max-width: 100px;
                 /* optional, so the logo doesn't get huge */
                 height: auto;
             }

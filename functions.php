@@ -464,7 +464,7 @@ add_filter('style_loader_src', 'amre_add_google_fonts_version', 10, 1);
 
 function amre_excerpt_to_chars($excerpt) {
     // 80 characters, for instance
-    $limit = 160;
+    $limit = 158;
     $excerpt = strip_shortcodes(strip_tags($excerpt));
 
     if ( mb_strlen($excerpt) > $limit ) {

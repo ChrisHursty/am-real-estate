@@ -50,9 +50,7 @@ $map_embed  = get_field('google_map_embed_code');
     <div class="row">
         <div class="col-md-12 align-center">
             <!-- Neighborhood Content -->
-            <div class="">
-                <?php the_content(); ?>
-            </div>
+            <?php wp_kses_post(the_content()); ?>
         </div>
     </div>
 </div>

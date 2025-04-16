@@ -152,7 +152,9 @@ $hero_intro   = get_field('hero_intro');
                                 </h4>
 
                                 <!-- Excerpt -->
-                                <p><?php the_excerpt(); ?></p>
+                                <div class="archive-card-excerpt">
+                                    <?php the_excerpt(); ?>
+                                </div>
                             </div>
                         </div><!-- .item -->
                         
