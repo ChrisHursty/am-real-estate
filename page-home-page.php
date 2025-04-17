@@ -120,8 +120,9 @@ $hero_intro   = get_field('hero_intro');
                 $recent_blogs = new WP_Query(array(
                     'post_type'      => 'post',
                     'posts_per_page' => 12,
-                    'order'          => 'DESC',
-                    'orderby'        => 'date'
+                    'order'          => 'ASC',
+                    'orderby'        => 'menu_order',
+                    'post_status'    => 'publish'
                 ));
 
                 if ( $recent_blogs->have_posts() ) :

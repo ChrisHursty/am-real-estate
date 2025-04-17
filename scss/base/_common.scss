@@ -4,19 +4,25 @@ body {
     font-family: $body;
 }
 
+.wallpaper-page {
+    background: url('../images/sepia-wallpaper.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff; // optional, if the text needs to stand out on sepia
+    padding: 0 0 60px;
+}
+
 body.admin-bar {
     margin-top: 32px !important;
 }
 
 .title-header {
-    margin-top: 156px;
+    margin-top: 120px;
 
-    @media (min-width: 1024px) and (max-width: 1175px) {
-        margin-top: 210px;
-    }
+    // @media (min-width: 1024px) and (max-width: 1175px) {
+    //     margin-top: 120px;
+    // }
 
     @media (max-width: 767px) {
-        margin-top: 110px !important;
         padding: 15px;
     }
 }

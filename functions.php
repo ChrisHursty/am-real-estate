@@ -474,3 +474,14 @@ function amre_excerpt_to_chars($excerpt) {
 }
 add_filter('get_the_excerpt', 'amre_excerpt_to_chars');
 
+function amre_reorder_blog_archive_by_menu_order( $query ) {
+    if ( is_admin() || ! $query->is_main_query() ) {
+        return;
+    }
+
+    if ( is_post_type_archive( 'post' ) || is_home() || is_category() || is_tag() ) {
+        $query->set( 'orderby', 'menu_order' );
+        $query->set( 'order', 'ASC' );
+    }
+}
+add_action( 'pre_get_posts', 'amre_reorder_blog_archive_by_menu_order' );
