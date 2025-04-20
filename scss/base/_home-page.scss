@@ -2,9 +2,12 @@
     position: relative;
     overflow: hidden;
     min-height: 80vh;
-    /* adjust as needed */
     display: flex;
     align-items: center;
+
+    @media (max-width: 767px) {
+        min-height: 60vh;
+    }
 
     .hero-slideshow {
         position: absolute;
@@ -26,6 +29,11 @@
         background-repeat: no-repeat;
         opacity: 0;
         transition: opacity 1s ease-in-out;
+
+        @media (max-width: 767px) {
+            min-height: 60vh;
+            height: 60vh !important;
+        }
     }
 
     .hero-content-wrapper {

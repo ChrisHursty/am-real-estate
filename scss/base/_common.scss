@@ -8,7 +8,11 @@ body {
     background: url('../images/sepia-wallpaper.png') no-repeat center center fixed;
     background-size: cover;
     color: #fff; // optional, if the text needs to stand out on sepia
-    padding: 0 0 60px;
+    padding: 0;
+
+    @media (max-width: 767px) {
+        padding: 15px;
+    }
 }
 
 body.admin-bar {
@@ -200,6 +204,9 @@ figure {
 // Page Template 
 .slim-page {
     max-width: 980px !important;
+    @media (max-width: 768px) {
+        padding: 15px;
+    }
 }
 
 // Search 
