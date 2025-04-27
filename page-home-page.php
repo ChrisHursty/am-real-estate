@@ -59,7 +59,7 @@ $hero_intro   = get_field('hero_intro');
 <section class="container-fw home-about">
     <div class="container">
         <div class="text-center">
-            <h2>A.M. Real Estate Team</h2>
+            <h2>A.M. Real Estate Group</h2>
         </div>
     </div>
     <div class="container">
@@ -175,7 +175,7 @@ $hero_intro   = get_field('hero_intro');
                     $blog_page_url = home_url('/blog');
                 }
                 ?>
-                <a class="amre-btn" href="<?php echo esc_url( $blog_page_url ); ?>">
+                <a class="amre-btn carousel-btn" href="<?php echo esc_url( $blog_page_url ); ?>">
                     <span>Read More</span>
                 </a>
             </div><!-- .align-center -->
