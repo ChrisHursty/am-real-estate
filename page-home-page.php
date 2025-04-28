@@ -89,7 +89,7 @@ $hero_intro   = get_field('hero_intro');
     <div class="container">
         <!-- Blog Search Bar -->
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-12">
                 <div class="blog-search">
                     <p class="search-label">Search our blogs</p>
                     <form role="search" method="get" class="searchform" action="<?php echo esc_url( home_url('/') ); ?>">

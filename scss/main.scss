@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 // Variables
 // #228B22 Forest Green
@@ -31,9 +31,12 @@ $footer-top-color: $black;
 $footer-bottom-color: $black;
 
 // Fonts - Using CSS variables populated by customizer
-$heading: var(--heading-font-family);
-$sub-heading: var(--heading-font-family);
-$body: var(--body-font-family);
+//$heading: var(--heading-font-family);
+$heading: "IM Fell English", serif;
+//$sub-heading: var(--heading-font-family);
+$sub-heading: "IM Fell English", serif;
+//$body: var(--body-font-family);
+$body: "Montserrat", sans-serif;
 
 // Base Styles
 @import 'base/reset';

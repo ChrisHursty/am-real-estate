@@ -65,95 +65,70 @@ function amre_wp_customize_register( $wp_customize ) {
         'priority' => 40,
     ));
 
-    // Add Typography Section
-    $wp_customize->add_section('typography_section', array(
-        'title' => __('Typography', 'amre-wp'),
-        'panel' => 'am_style_options_panel',
-        'priority' => 10,
-    ));
+    /*--------------------------------------------------------------
+	# SECTION: Paragraph Styles
+	--------------------------------------------------------------*/
+	$wp_customize->add_section(
+		'am_paragraph_styles',
+		array(
+			'title'       => __( 'Paragraph Styles', 'amre' ),
+			'panel'       => 'am_style_options_panel',
+			'priority'    => 10,
+			'description' => __( 'Adjust default paragraph line-height and space after paragraphs.', 'amre' ),
+		)
+	);
 
-    // Heading Font Family
-    $wp_customize->add_setting('heading_font_family', array(
-        'default' => 'Roboto',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
+	/* Line Height */
+	$wp_customize->add_setting(
+		'am_p_line_height',
+		array(
+			'default'           => '1.6',
+			'type'              => 'theme_mod',
+			'sanitize_callback' => function( $value ) {
+				return ( is_numeric( $value ) && $value > 0 ) ? $value : '1.6';
+			},
+		)
+	);
 
-    $wp_customize->add_control('heading_font_family', array(
-        'label' => __('Heading Font Family', 'amre-wp'),
-        'section' => 'typography_section',
-        'type' => 'text',
-        'input_attrs' => array(
-            'class' => 'google-font-autocomplete',
-            'data-font-type' => 'heading'
-        ),
-        'priority' => 10,
-    ));
+	$wp_customize->add_control(
+		'am_p_line_height',
+		array(
+			'label'       => __( 'Line height (unit-less)', 'amre' ),
+			'section'     => 'am_paragraph_styles',
+			'type'        => 'number',
+			'input_attrs' => array(
+				'step' => '0.1',
+				'min'  => '1',
+				'max'  => '3',
+			),
+		)
+	);
 
-    // Add heading font text transform setting
-    $wp_customize->add_setting('heading_font_transform', array(
-        'default'           => 'none',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport'         => 'refresh',
-    ));
+	/* === Setting : Space below paragraphs ======================= */
+	$wp_customize->add_setting(
+		'am_p_margin_bottom',
+		array(
+			'default'           => '1.1',
+			'type'              => 'theme_mod',
+			'sanitize_callback' => function( $value ) {
+				return ( is_numeric( $value ) && $value >= 0 ) ? $value : '1.1';
+			},
+		)
+	);
 
-    // Add heading font text transform control
-    $wp_customize->add_control('heading_font_transform', array(
-        'label'    => __('Heading Text Transform', 'amre-wp'),
-        'section'  => 'typography_section',
-        'type'     => 'select',
-        'choices'  => array(
-            'none'       => __('None', 'amre-wp'),
-            'uppercase'  => __('Uppercase', 'amre-wp'),
-            'lowercase'  => __('Lowercase', 'amre-wp'),
-            'capitalize' => __('Capitalize', 'amre-wp'),
-            'italic'     => __('Italic', 'amre-wp'),
-            'oblique'    => __('Oblique', 'amre-wp'),
-        ),
-        'priority' => 11,
-    ));
-
-    // Add heading font weight setting
-    $wp_customize->add_setting('heading_font_weight', array(
-        'default'           => 'normal',
-        'sanitize_callback' => 'sanitize_text_field',
-        'transport'         => 'refresh',
-    ));
-
-    // Add heading font weight control
-    $wp_customize->add_control('heading_font_weight', array(
-        'label'    => __('Heading Font Weight', 'amre-wp'),
-        'section'  => 'typography_section',
-        'type'     => 'select',
-        'choices'  => array(
-            'normal'     => __('Normal', 'amre-wp'),
-            '100'       => __('Thin (100)', 'amre-wp'),
-            '200'       => __('Extra Light (200)', 'amre-wp'),
-            '300'       => __('Light (300)', 'amre-wp'),
-            '400'       => __('Regular (400)', 'amre-wp'),
-            '500'       => __('Medium (500)', 'amre-wp'),
-            '600'       => __('Semi Bold (600)', 'amre-wp'),
-            '700'       => __('Bold (700)', 'amre-wp'),
-            '800'       => __('Extra Bold (800)', 'amre-wp'),
-            '900'       => __('Black (900)', 'amre-wp'),
-        ),
-        'priority' => 12,
-    ));
-
-    // Body Font Family
-    $wp_customize->add_setting('body_font_family', array(
-        'default' => 'Open Sans',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-
-    $wp_customize->add_control('body_font_family', array(
-        'label' => __('Body Font Family', 'amre-wp'),
-        'section' => 'typography_section',
-        'type' => 'text',
-        'input_attrs' => array(
-            'class' => 'google-font-autocomplete',
-            'data-font-type' => 'body'
-        ),
-    ));
+	$wp_customize->add_control(
+		'am_p_margin_bottom',
+		array(
+			'label'       => __( 'Space below paragraphs (em)', 'amre' ),
+			'section'     => 'am_paragraph_styles',
+			'type'        => 'number',
+			'input_attrs' => array(
+				'step' => '0.1',
+				'min'  => '0',
+				'max'  => '5',
+			),
+		)
+	);
 
     // Add Colors Section
     $wp_customize->add_section('color_section', array(
@@ -188,72 +163,6 @@ function amre_wp_customize_register( $wp_customize ) {
     $wp_customize->add_section('layout_section', array(
         'title' => __('Layout', 'amre-wp'),
         'panel' => 'am_style_options_panel',
-        'priority' => 30,
-    ));
-
-    // Container Width
-    $wp_customize->add_setting('container_width', array(
-        'default' => '1200',
-        'sanitize_callback' => 'absint',
-    ));
-
-    $wp_customize->add_control('container_width', array(
-        'label' => __('Container Width (px)', 'amre-wp'),
-        'section' => 'layout_section',
-        'type' => 'number',
-        'input_attrs' => array(
-            'min' => 800,
-            'max' => 2000,
-            'step' => 10,
-        ),
-    ));
-
-    // Add Spacing Section
-    $wp_customize->add_section('spacing_section', array(
-        'title' => __('Spacing', 'amre-wp'),
-        'panel' => 'am_style_options_panel',
-        'priority' => 40,
-    ));
-
-    // Section Padding
-    $wp_customize->add_setting('section_padding', array(
-        'default' => '60',
-        'sanitize_callback' => 'absint',
-    ));
-
-    $wp_customize->add_control('section_padding', array(
-        'label' => __('Section Padding (px)', 'amre-wp'),
-        'section' => 'spacing_section',
-        'type' => 'number',
-    ));
-
-    // Button Vertical Spacing
-    $wp_customize->add_setting('button_vertical_spacing', array(
-        'default' => '15',
-        'sanitize_callback' => 'absint',
-        'transport' => 'refresh',
-    ));
-
-    $wp_customize->add_control('button_vertical_spacing', array(
-        'label' => __('Button Vertical Spacing (px)', 'amre-wp'),
-        'description' => __('Add vertical margin/padding around buttons', 'amre-wp'),
-        'section' => 'spacing_section',
-        'type' => 'number',
-        'priority' => 20,
-    ));
-
-    // Section Vertical Spacing
-    $wp_customize->add_setting('section_vertical_spacing', array(
-        'default' => '60',
-        'sanitize_callback' => 'absint',
-        'transport' => 'refresh',
-    ));
-
-    $wp_customize->add_control('section_vertical_spacing', array(
-        'label' => __('Section Vertical Spacing (px)', 'amre-wp'),
-        'description' => __('Add vertical margin/padding between sections', 'amre-wp'),
-        'section' => 'spacing_section',
-        'type' => 'number',
         'priority' => 30,
     ));
 

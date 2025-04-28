@@ -9,49 +9,77 @@ $maxFontSize: 48px;
 
 /* Apply responsive font size using clamp() */
 h1 {
+	color: $primary;
+	font-family: $heading;
 	font-size: clamp(#{$minFontSize}, #{$preferredFontSize}, #{$maxFontSize});
 	line-height: 1.4;
+	span {
+		font-family: $heading;
+	}
 }
 
 h2 {
+	color: $primary;
+	font-family: $heading;
 	font-size: clamp(#{$minFontSize}, #{$preferredFontSize - 8px}, #{$maxFontSize - 8px});
 	line-height: 1.3;
     margin: 20px 0 10px;
+	span {
+		font-family: $heading;
+	}
 }
 
 h3 {
+	color: $primary;
+	font-family: $heading;
 	font-size: clamp(#{$minFontSize}, #{$preferredFontSize - 20px}, #{$maxFontSize - 20px});
 	line-height: 1.4;
-    text-transform: uppercase;
-    color: darken($primary, 20%);
     margin: 20px 0 10px;
+	span {
+		font-family: $heading;
+	}
 }
 
 h4 {
+	color: $primary;
+	font-family: $heading;
 	font-size: clamp(#{$minFontSize}, #{$preferredFontSize - 22px}, #{$maxFontSize - 22px});
 	line-height: 1.5;
+	span {
+		font-family: $heading;
+	}
 }
 
 h5 {
+	color: $primary;
+	font-family: $heading;
 	font-size: clamp(#{$minFontSize}, #{$preferredFontSize - 16px}, #{$maxFontSize - 16px});
 	line-height: 1.6;
+	span {
+		font-family: $heading;
+	}
 }
 
 h6 {
+	color: $primary;
+	font-family: $heading;
 	font-size: clamp(#{$minFontSize}, #{$preferredFontSize - 20px}, #{$maxFontSize - 20px});
 	line-height: 1.7;
+	span {
+		font-family: $heading;
+	}
 }
 
 p {
+	color: $black;
+	font-family: $body;
 	font-size: clamp(14px, 16px, 16px);
-	line-height: 1.8;
-	margin-bottom: 1em;
 }
 
 @media screen and (max-width: 768px) {
 
 	h1 {
-		font-size: clamp(#{$minFontSize}, #{$preferredFontSize - 4px}, #{$maxFontSize - 4px});
+		font-size: clamp(#{$minFontSize}, #{$preferredFontSize - 14px}, #{$maxFontSize - 4px});
 	}
 
 	h2 {
@@ -81,6 +109,5 @@ p {
 
 	p {
 		font-size: clamp(14px, 15px, 15px);
-		line-height: 1.6;
 	}
 }

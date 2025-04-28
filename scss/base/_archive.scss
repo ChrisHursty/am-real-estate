@@ -15,6 +15,10 @@
     }
 }
 
+.blog-archive.title-header {
+    margin-top: 120px;
+}
+
 .blog-archive {
     .row {
         padding: 0;
@@ -29,9 +33,7 @@
         box-shadow: none;
         margin-top: 0;
     }
-}
 
-.blog-archive {
     padding-top: 0 !important;
 
     .archive-card {
@@ -39,6 +41,7 @@
 
         @media (max-width: 768px) {
             padding: 0;
+            margin-bottom: 20px;
         }
 
         .card-img {

@@ -94,6 +94,10 @@
     text-align: center;
     padding: 2rem 0;
     flex-direction: column;
+    
+    @media (max-width: 767px) {
+        padding: 0;
+    }
 
     h1 {
         display: block;

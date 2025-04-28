@@ -301,6 +301,8 @@ function amre_wp_customizer_css() {
     $heading_transform = get_theme_mod('heading_font_transform', 'none');
     $primary_color = get_theme_mod('primary_color', '#000000');
     $secondary_color = get_theme_mod('secondary_color', '#ffffff');
+    $line_height = get_theme_mod('am_p_line_height', '1.5'); // $line_height
+    $margin_bottom = get_theme_mod('am_p_margin_bottom', '1'); // $margin_bottom
 
     // Debug output for administrators
     if (current_user_can('manage_options')) {
@@ -312,36 +314,7 @@ function amre_wp_customizer_css() {
     }
     ?>
     <style type="text/css">
-        /* Heading font styles */
-        h1, h2, h3, h4, h5, h6,
-        .site-title,
-        .entry-title,
-        .page-title,
-        .section-title,
-        .heading-font {
-            color: <?php echo esc_attr($primary_color); ?> !important;
-            font-family: '<?php echo esc_attr($heading_font); ?>', cursive;
-            font-weight: <?php echo esc_attr($heading_weight); ?>;
-            text-transform: <?php echo esc_attr($heading_transform); ?>;
-        }
-
-        /* Body font styles */
-        body,
-        p, 
-        li, 
-        a:not(h1 a):not(h2 a):not(h3 a):not(h4 a):not(h5 a):not(h6 a), 
-        div:not(.heading-font), 
-        span:not(.heading-font), 
-        blockquote, 
-        cite, 
-        input, 
-        textarea, 
-        select, 
-        button {
-            color: <?php echo esc_attr($secondary_color); ?>;
-            font-family: '<?php echo esc_attr($body_font); ?>', cursive;
-        }
-
+    
         /* Header Styles */
         .site-header {
             background-color: <?php echo get_theme_mod('header_transparent', false) ? 'transparent' : esc_attr(get_theme_mod('header_bg_color', '#3f5a36')); ?>;
@@ -378,29 +351,11 @@ function amre_wp_customizer_css() {
             font-weight: <?php echo esc_attr(get_theme_mod('footer_font_weight', 'normal')); ?>;
         }
 
-        /* Layout */
-        .container {
-            max-width: <?php echo esc_attr(get_theme_mod('container_width', '1200')); ?>px;
-        }
+        p {
+			line-height: <?php echo esc_attr( $line_height ); ?>em;
+			margin-bottom: <?php echo esc_attr( $margin_bottom ); ?>em;
+		}
 
-        /* Spacing */
-        section {
-            padding: <?php echo esc_attr(get_theme_mod('section_padding', '60')); ?>px 0;
-        }
-
-        /* Button Spacing */
-        .wp-block-button__link,
-        .button,
-        button,
-        input[type="button"],
-        input[type="reset"],
-        input[type="submit"],
-        .amre-btn {
-            margin-top: <?php echo esc_attr(get_theme_mod('button_vertical_spacing', '15')); ?>px;
-            margin-bottom: <?php echo esc_attr(get_theme_mod('button_vertical_spacing', '15')); ?>px;
-            padding-top: <?php echo esc_attr(get_theme_mod('button_vertical_spacing', '15')); ?>px;
-            padding-bottom: <?php echo esc_attr(get_theme_mod('button_vertical_spacing', '15')); ?>px;
-        }
     </style>
     <?php
 }

@@ -19,6 +19,14 @@ footer {
         }
     }
 
+    .footer-logo {
+        padding: 0 10px;
+
+        @media (max-width: 767px) {
+            padding: 0;
+        }
+    }
+
     .footer-socials {
         display: flex;
         gap: 20px;

@@ -7,12 +7,7 @@ body {
 .wallpaper-page {
     background: url('../images/sepia-wallpaper.png') no-repeat center center fixed;
     background-size: cover;
-    color: #fff; // optional, if the text needs to stand out on sepia
     padding: 0;
-
-    @media (max-width: 767px) {
-        padding: 15px;
-    }
 }
 
 body.admin-bar {
@@ -21,10 +16,6 @@ body.admin-bar {
 
 .title-header {
     margin-top: 120px;
-
-    // @media (min-width: 1024px) and (max-width: 1175px) {
-    //     margin-top: 120px;
-    // }
 
     @media (max-width: 767px) {
         padding: 15px;
@@ -98,7 +89,7 @@ figure {
     background-color: $forestgreen;
     border-radius: 50px;
     display: inline-block;
-    font-family: $heading;
+    font-family: $body;
     font-size: 18px;
     font-weight: 700;
     padding: 10px 20px;
@@ -205,7 +196,7 @@ figure {
 .slim-page {
     max-width: 980px !important;
     @media (max-width: 768px) {
-        padding: 15px;
+        padding: 0 15px 15px;
     }
 }
 
