@@ -22,10 +22,6 @@
 .blog-archive {
     .row {
         padding: 0;
-
-        @media (max-width: 768px) {
-            padding: 15px;
-        }
     }
 
     @media (max-width: 768px) {
@@ -37,6 +33,7 @@
     padding-top: 0 !important;
 
     .archive-card {
+        position: relative;
         padding: 20px;
 
         @media (max-width: 768px) {
@@ -75,8 +72,14 @@
         }
 
         .archive-btn {
+            position: absolute;
+            bottom: 0;
             font-size: 14px;
             text-decoration: none;
+
+            @media (max-width: 768px) {
+                position: relative;
+            }
 
             &:hover {
                 text-decoration: underline;
