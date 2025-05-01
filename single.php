@@ -23,7 +23,7 @@ if (!$featured_image_url) {
 }
 ?>
 
-<section class="container single-post-hero text-center title-header">
+<section class="container single-post-hero text-center">
     <!-- Post Title -->
     <h1><?php echo esc_html( get_the_title() ); ?></h1>
 

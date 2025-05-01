@@ -11,15 +11,15 @@
 
         .map {
             @media (max-width: 600px) {
-                margin: 10px auto;
+                margin: 0 auto;
             }
         }
 
         .info {
             padding-left: 30px;
 
-            @media (max-width: 767px) {
-                padding: 15px; 
+            @media (max-width: 600px) {
+                padding: 0; 
             }
         }
     }
@@ -28,10 +28,13 @@
 .neighborhood-content {
     margin-top: 35px;
     
-    
+    @media (max-width: 767px) {
+        margin-top: 0; 
+    }
 }
 
 .archive-neighborhoods-container {
+    margin-bottom: 30px;
 
     .row {
         padding: 0;
@@ -44,6 +47,7 @@
     @media (max-width: 768px) {
         border-radius: 0;
         box-shadow: none;
+        margin-bottom: 15px;
         margin-top: 0;
     }
 

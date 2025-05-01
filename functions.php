@@ -417,17 +417,29 @@ function amre_add_google_fonts_version($url) {
 }
 add_filter('style_loader_src', 'amre_add_google_fonts_version', 10, 1);
 
-function amre_excerpt_to_chars($excerpt) {
-    // 80 characters, for instance
-    $limit = 158;
-    $excerpt = strip_shortcodes(strip_tags($excerpt));
+/**
+ * Limit excerpts (blog & product) to a fixed number of characters.
+ *
+ * @param string $excerpt The original excerpt.
+ * @return string The truncated excerpt.
+ */
+function amre_excerpt_to_chars( $excerpt ) {
+    $limit = 158; // adjust as needed
+    $excerpt = strip_shortcodes( strip_tags( $excerpt ) );
 
-    if ( mb_strlen($excerpt) > $limit ) {
-        $excerpt = mb_substr($excerpt, 0, $limit, 'UTF-8') . '…';
+    if ( mb_strlen( $excerpt ) > $limit ) {
+        $excerpt = mb_substr( $excerpt, 0, $limit, 'UTF-8' ) . '…';
     }
+
     return $excerpt;
 }
-add_filter('get_the_excerpt', 'amre_excerpt_to_chars');
+
+// Blog posts
+add_filter( 'get_the_excerpt', 'amre_excerpt_to_chars', 10, 1 );
+
+// WooCommerce product short descriptions
+add_filter( 'woocommerce_short_description', 'amre_excerpt_to_chars', 10, 1 );
+
 
 function amre_reorder_blog_archive_by_menu_order( $query ) {
     if ( is_admin() || ! $query->is_main_query() ) {
@@ -440,3 +452,50 @@ function amre_reorder_blog_archive_by_menu_order( $query ) {
     }
 }
 add_action( 'pre_get_posts', 'amre_reorder_blog_archive_by_menu_order' );
+
+// Add WooCommerce support
+add_action('after_setup_theme', function() {
+    add_theme_support('woocommerce');
+});
+
+// Set WooCommerce product quantity input args
+add_filter( 'woocommerce_quantity_input_args', function( $args, $product ) {
+    $args['min_value'] = 1;
+    $args['max_value'] = 4;
+    return $args;
+}, 10, 2 );
+
+// 1) Remove the “Reviews” tab
+add_filter( 'woocommerce_product_tabs', function( $tabs ) {
+    if ( isset( $tabs['reviews'] ) ) {
+        unset( $tabs['reviews'] );
+    }
+    return $tabs;
+}, 20 );
+
+/**
+ * 2) Remove the Related Products section
+ *    WooCommerce by default hooks this at priority 20 on the single-product-summary.
+ */
+add_action( 'init', function() {
+    remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+} );
+
+/**
+ * Disable the “Product Meta” box (SKU, categories, tags) on single products
+ */
+add_action( 'init', function() {
+    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+} );
+
+// in your theme’s functions.php (inside after_setup_theme)
+add_action( 'after_setup_theme', function() {
+    // Enables the product gallery zoom
+    add_theme_support( 'wc-product-gallery-zoom' );
+  
+    // Enables the product gallery lightbox (PhotoSwipe)
+    add_theme_support( 'wc-product-gallery-lightbox' );
+  
+    // Enables the product gallery slider (thumbnails as slider)
+    add_theme_support( 'wc-product-gallery-slider' );
+} );

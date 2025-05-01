@@ -10,7 +10,7 @@ footer {
     .footer-text {
 
         a {
-            color: $footer-color;
+            color: $white;
             text-decoration: underline;
 
             &:hover {
@@ -55,6 +55,7 @@ footer {
     }
 
     .copyright-text {
+        color: $white;
         font-size: 0.75em;
     }
 }

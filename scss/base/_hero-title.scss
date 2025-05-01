@@ -91,11 +91,12 @@
 
 /* single-post.scss (example) */
 .single-post-hero {
+    margin-top: 150px;
     text-align: center;
-    padding: 2rem 0;
     flex-direction: column;
     
     @media (max-width: 767px) {
+        margin-top: 120px;
         padding: 0;
     }
 

@@ -76,6 +76,10 @@ p {
 	font-size: clamp(14px, 16px, 16px);
 }
 
+strong, b {
+	font-weight: bold !important;
+}
+
 @media screen and (max-width: 768px) {
 
 	h1 {
