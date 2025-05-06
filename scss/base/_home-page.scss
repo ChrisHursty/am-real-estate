@@ -96,6 +96,12 @@
     .about-content {
         align-content: center;
         padding-right: 30px;
+
+        @media (max-width: 767px) {
+            padding-right: 0;
+            text-align: justify;
+        }
+    
     }
 
     p {
