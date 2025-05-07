@@ -107,15 +107,11 @@
     }
 
     .post-categories {
-        color: $secondary;
+        color: $primary;
         font-size: 12px;
         margin-bottom: 10px;
         text-decoration: none;
         text-transform: uppercase;
-
-        &:hover {
-            text-decoration: underline;
-        }
     }
 
     .featured-image {

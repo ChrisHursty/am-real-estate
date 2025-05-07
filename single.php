@@ -27,23 +27,19 @@ if (!$featured_image_url) {
     <!-- Post Title -->
     <h1><?php echo esc_html( get_the_title() ); ?></h1>
 
-    <!-- Categories (comma-separated) -->
     <?php
-    $category_terms = get_the_terms(get_the_ID(), 'category');
-    if (!empty($category_terms) && !is_wp_error($category_terms)) : ?>
+    $category_terms = get_the_terms( get_the_ID(), 'category' );
+    if ( ! empty( $category_terms ) && ! is_wp_error( $category_terms ) ) : ?>
         <div class="post-categories mb-2">
             <?php
-            // Build an array of linked category names
-            $linked_cats = array();
+            // Build an array of category names (plain text)
+            $cat_names = array();
             foreach ( $category_terms as $cat ) {
-                $cat_link = get_term_link( $cat->term_id, 'category' );
-                if ( ! is_wp_error($cat_link) ) {
-                    $linked_cats[] = '<a href="' . esc_url($cat_link) . '">' . esc_html($cat->name) . '</a>';
-                }
+                $cat_names[] = esc_html( $cat->name );
             }
-            
+
             // Print them, comma-separated
-            echo implode(', ', $linked_cats);
+            echo implode( ', ', $cat_names );
             ?>
         </div>
     <?php endif; ?>
