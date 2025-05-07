@@ -6,7 +6,7 @@
     align-items: center;
 
     @media (max-width: 767px) {
-        min-height: 60vh;
+        min-height: 55vh;
     }
 
     .hero-slideshow {
@@ -91,6 +91,10 @@
 
     .amre-btn {
         margin-top: 0;
+
+        @media (max-width: 767px) {
+            margin-bottom: 10px;
+        }
     }
 
     .about-content {
@@ -268,4 +272,10 @@ h2 {
 .ml-subscribe-form {
     border: 1px solid $primary;
     margin-bottom: 60px !important;
+}
+
+.above-footer {
+    @media (max-width: 767px) {
+        padding: 0 15px;
+    }
 }
