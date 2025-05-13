@@ -87,23 +87,26 @@
 
     @media (max-width: 767px) {
         padding: 15px;
+
+        .slim-page {
+            padding: 0;
+        }
     }
 
     .amre-btn {
         margin-top: 0;
 
         @media (max-width: 767px) {
+            margin-top: 20px;
             margin-bottom: 10px;
         }
     }
 
     .about-content {
         align-content: center;
-        padding-right: 30px;
 
         @media (max-width: 767px) {
-            padding-right: 0;
-            text-align: justify;
+            padding: 0;
         }
     
     }
@@ -135,7 +138,7 @@ h2 {
     }
 
     .blog-card {
-        margin-bottom: 2rem;
+        margin-bottom: 40px;
         padding: 0 10px 0 0;
 
         .blog-image-link {

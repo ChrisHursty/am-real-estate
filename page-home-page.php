@@ -57,14 +57,14 @@ $hero_intro   = get_field('hero_intro');
 
 <!-- About -->
 <section class="container-fw home-about">
-    <div class="container">
+    <div class="container slim-page">
         <div class="text-center">
             <h2>A.M. Real Estate Group</h2>
         </div>
     </div>
-    <div class="container">
+    <div class="container">     
         <div class="row">
-            <div class="col-md-12 about-content align-center">
+            <div class="col-md-12 about-content align-center slim-page">
                 <?php 
                 $about_content = get_field('about'); 
                 if ($about_content) {
