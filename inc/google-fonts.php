@@ -67,8 +67,8 @@ function amre_get_google_fonts() {
  */
 function amre_enqueue_google_fonts() {
     // Get font selections from customizer
-    $heading_font = get_theme_mod('heading_font_family', 'Bungee Shade');
-    $body_font = get_theme_mod('body_font_family', 'Alex Brush');
+    $heading_font = get_theme_mod('heading_font_family', 'IM Fell English SC');
+    $body_font = get_theme_mod('body_font_family', 'Montserrat');
     
     // Debug output for administrators
     if (current_user_can('manage_options')) {

@@ -62,10 +62,24 @@
             margin-bottom: 20px;
         }
 
-        .card-img {
+        .image-container {
+            height: 140px;
+            position: relative;
+            overflow: hidden;
             border-radius: 3px;
-            width: 100%;
+            margin-bottom: 10px;
+
+            @media (max-width: 768px) {
+                height: auto;
+                max-height: 250px;
+                margin-bottom: 0;
+            }
+
+            .card-img {
+                width: 100%;
+            }
         }
+
 
         h2.neighborhood-card-title {
             font-size: 1rem;

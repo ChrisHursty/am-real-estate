@@ -295,8 +295,8 @@ add_action('pre_get_posts','amre_add_listings_to_search');
  */
 function amre_wp_customizer_css() {
     // Get font selections from customizer
-    $heading_font = get_theme_mod('heading_font_family', 'Bungee Shade');
-    $body_font = get_theme_mod('body_font_family', 'Alex Brush');
+    $heading_font = get_theme_mod('heading_font_family', 'IM Fell English SC');
+    $body_font = get_theme_mod('body_font_family', 'Montserrat');
     $heading_weight = get_theme_mod('heading_font_weight', 'normal');
     $heading_transform = get_theme_mod('heading_font_transform', 'none');
     $primary_color = get_theme_mod('primary_color', '#000000');

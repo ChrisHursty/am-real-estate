@@ -24,9 +24,12 @@ get_header(); ?>
                 <div class="col-md-3 col-sm-12 neighborhood-card">
                     
                     <?php if ( has_post_thumbnail() ) : ?>
-                        <a href="<?php the_permalink(); ?>">
-                            <?php the_post_thumbnail('medium', ['class' => 'img-fluid card-img']); ?>
-                        </a>
+                        <div class="image-container">
+                            <a href="<?php the_permalink(); ?>">
+                                <?php the_post_thumbnail('medium', ['class' => 'img-fluid card-img']); ?>
+                            </a>
+                        </div>
+                        
                     <?php endif; ?>
                     
                     <h2 class="neighborhood-card-title">
