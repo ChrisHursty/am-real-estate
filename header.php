@@ -122,45 +122,58 @@ defined('ABSPATH') || exit;
         </div>
 
         <!-- === 3. Mobile Hamburger (below 1025px) === -->
-        <div class="header-mobile mobile-only">
-            <div class="container d-flex align-items-center justify-content-between">
-                <!-- Logo or anything you like on mobile -->
-                <div class="site-branding text-center">
-                    <?php
-                    if (has_custom_logo()) {
-                        the_custom_logo();
-                    } else {
-                        echo '<a href="' . esc_url(home_url('/')) . '" rel="home">
-                                <img src="' . esc_url(get_template_directory_uri() . '/dist/images/default-logo.svg') . '" 
-                                     alt="' . esc_attr(get_bloginfo('name')) . '">
-                              </a>';
-                    }
-                    ?>
-                </div>
-
-                <!-- Hamburger Toggle -->
-                <button class="menu-toggle" aria-controls="mobile-menu" aria-expanded="false">
-                    <i class="fas fa-bars" aria-hidden="true"></i>
-                </button>
+        <div class="container d-flex justify-content-center align-items-center position-relative">
+            <!-- Cart Icon for Mobile -->
+            <div class="mobile-cart-icon">
+                <a href="<?php echo wc_get_cart_url(); ?>">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+                </a>
             </div>
 
-            <!-- Mobile Navigation Slide-out -->
-            <nav id="mobile-menu" class="main-navigation" aria-label="Mobile Menu">
-                <button class="menu-close">
-                    <i class="fas fa-times" aria-hidden="true"></i>
-                </button>
+            <!-- Centered Logo -->
+            <div class="site-branding text-center mx-auto mobile-centered-logo">
                 <?php
-                wp_nav_menu(array(
-                    'theme_location' => 'primary',
-                    'menu_id'        => 'mobile-menu-items',
-                    'menu_class'     => 'menu-list',
-                    'container'      => false,
-                    'menu_class'     => 'navbar-nav',
-                    'walker'         => new WP_Bootstrap_Navwalker(),
-                    'depth'          => 2, // Needed for dropdowns
-                ));
+                if (has_custom_logo()) {
+                    the_custom_logo();
+                } else {
+                    echo '<a href="' . esc_url(home_url('/')) . '" rel="home">
+                            <img src="' . esc_url(get_template_directory_uri() . '/dist/images/default-logo.svg') . '" 
+                                alt="' . esc_attr(get_bloginfo('name')) . '">
+                        </a>';
+                }
                 ?>
-            </nav>
+            </div>
+
+            <!-- Hamburger Toggle -->
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Slide-out -->
+        <nav id="mobile-menu" class="main-navigation" aria-label="Mobile Menu">
+            <button class="menu-close">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+            <?php
+            wp_nav_menu(array(
+                'theme_location' => 'primary',
+                'menu_id'        => 'mobile-menu-items',
+                'menu_class'     => 'menu-list',
+                'container'      => false,
+                'menu_class'     => 'navbar-nav',
+                'walker'         => new WP_Bootstrap_Navwalker(),
+                'depth'          => 2, // Needed for dropdowns
+            ));
+            ?>
+        </nav>
+        <!-- Desktop Cart Icon (Sticky) -->
+        <div class="desktop-cart-icon">
+            <a href="<?php echo wc_get_cart_url(); ?>">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+            </a>
         </div>
 
     </header>

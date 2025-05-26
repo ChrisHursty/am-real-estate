@@ -65,32 +65,46 @@ echo '<script type="application/ld+json">' . json_encode($schema) . '</script>';
 <section class="container-fw lp-hero light-bg">
     <div class="container">
         <div class="row">
-            <div class="col-md-7 lp-hero-content align-left">
-                <h1>AM Real Estate Hair | Expert Balayage and Hair Services Near <?php the_field('location_name'); ?> in Brookhaven</h1>
+            <div class="col-sm-12 col-md-6 lp-hero-content align-left">
+                <h1>AM Real Estate | Real Estate Services Near <?php the_field('location_name'); ?></h1>
                 <div class="lp-hero-text">
                     <?php echo wp_kses_post(get_field('additional_details')); ?>
                 </div>
                 <div class="button-box">
                     <a href="<?php the_field('sign_up_url'); ?>" target="_blank" class="amre-btn">
-                        <span>Book An Appointment<i style="margin-left: 6px;" class="fas fa-external-link-alt"></i></span>
+                        <span>Get in Touch</span>
                     </a>
                 </div>
             </div>
 
-            <div class="col-md-5 lp-hero-image align-right">
+            <div class="col-sm-12 col-md-6 lp-hero-image align-right">
                 <?php 
-                $hero_video = get_field('lp_video', 'option'); 
-                if ($hero_video) {
-                    $video_url = esc_url($hero_video['url']);
-                    echo '<video class="lp-hero-video" autoplay muted loop playsinline>
-                            <source src="' . $video_url . '" type="video/mp4">
-                            Your browser does not support the video tag.
-                          </video>';
+                $neighborhood_id = get_field('neighborhood_post_id');
+
+                // Try to get neighborhood featured image
+                if ($neighborhood_id && get_post_type($neighborhood_id) === 'neighborhoods') {
+                    $thumbnail_id = get_post_thumbnail_id($neighborhood_id);
+                    $thumbnail_url = wp_get_attachment_image_url($thumbnail_id, 'large');
+                }
+
+                // If neighborhood image missing or ID invalid, get fallback image from options page
+                if (empty($thumbnail_url)) {
+                    $fallback = get_field('fallback_image', 'option');
+                    if ($fallback && isset($fallback['url'])) {
+                        $thumbnail_url = esc_url($fallback['url']);
+                    }
+                }
+
+                // Output the image or final fallback message
+                if (!empty($thumbnail_url)) {
+                    echo '<img src="' . esc_url($thumbnail_url) . '" class="img-fluid neighborhood-hero-img" alt="Featured neighborhood image" loading="lazy">';
                 } else {
-                    echo '<p>Video not available.</p>'; // Optional message if the video is missing
+                    echo '<p>No image available.</p>';
                 }
                 ?>
             </div>
+
+
         </div><!-- .row -->
     </div>
 </section>
@@ -109,43 +123,74 @@ echo '<script type="application/ld+json">' . json_encode($schema) . '</script>';
         </div>
         <div class="col-sm-12 col-md-6 align-right content">
             <?php echo apply_filters('the_content', get_field('lp_intro', 'option')); ?>
-            <a href="<?php the_field('sign_up_url'); ?>" target="_blank" class="amre-btn white-btn">
-                <span>Book An Appointment<i style="margin-left: 6px;" class="fas fa-external-link-alt"></i></span>
+            <a href="<?php the_field('sign_up_url'); ?>" target="_blank" class="amre-btn">
+                <span>Get In Touch</span>
             </a>
         </div>
     </div>
 </section>
 
-<!-- Services -->
+<!-- Grid Repeater from Content Options -->
 <section class="container-fw services-container dark-bg">
     <div class="container">
-        <div class="align-center">
-            <h2>Services</h2>
+        <div class="row">
+            <div class="align-center">
+                <h2>Services</h2>
+            </div>
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            <?php
-            $home_page_id = 5;
-            $services = get_field('services', $home_page_id);
+        <div class="row grid-row">
+            <?php if (have_rows('services_grid_repeater', 'option')) : ?>
+                <?php
+                $grid_items = get_field('services_grid_repeater', 'option');
+                $total_items = is_array($grid_items) ? count($grid_items) : 0;
 
-            if (is_array($services)) {
-                foreach ($services as $service) {
-                    echo '<div class="service-item"><div class="service-content">';
-                    if (!empty($service['title'])) {
-                        echo '<h2 class="service-title">' . esc_html($service['title']) . '</h2>';
-                    }
-                    if (!empty($service['description'])) {
-                        echo '<p class="service-description">' . esc_html($service['description']) . '</p>';
-                    }
-                    echo '</div></div>';
+                // Determine column class based on number of items
+                $col_class = 'col-md-12';
+                if ($total_items == 2) {
+                    $col_class = 'col-sm-12 col-md-6';
+                } elseif ($total_items >= 3) {
+                    $col_class = 'col-sm-12 col-md-4';
                 }
-            } else {
-                echo 'No services available.';
-            }
-            ?>
+                ?>
+
+                <?php while (have_rows('services_grid_repeater', 'option')) : the_row(); 
+                    $image = get_sub_field('image');
+                    $title = get_sub_field('heading');
+                    $description = get_sub_field('description');
+                    $button_text = get_sub_field('button_text');
+                    $button_link = get_sub_field('button_link');
+                ?>
+                    <div class="grid-item <?php echo esc_attr($col_class); ?>">
+                        <?php if ($image) : ?>
+                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($title); ?>" class="service-image">
+                        <?php endif; ?>
+                        <div class="grid-content">
+                            <?php if ($title) : ?>
+                                <h2 class="grid-title"><?php echo esc_html($title); ?></h2>
+                            <?php endif; ?>
+                            <?php if ($description) : ?>
+                                <p class="grid-description"><?php echo esc_html($description); ?></p>
+                            <?php endif; ?>
+                            <?php if ($button_text && $button_link) : ?>
+                                <a class="grid-btn white-btn" href="<?php echo esc_url($button_link); ?>">
+                                    <span><?php echo esc_html($button_text); ?></span>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            <?php else : ?>
+                <p class="align-center">No grid available at the moment.</p>
+            <?php endif; ?>
         </div>
-        <a class="amre-btn align-center white-btn" href="/services"><span>View All Of Our Services</span></a>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <a class="amre-btn align-center white-btn" href="/services"><span>View All Of Our Services</span></a>
+        </div>
     </div>
 </section>
 
@@ -165,25 +210,6 @@ echo '<script type="application/ld+json">' . json_encode($schema) . '</script>';
         <p>No gallery images found.</p>
     <?php endif; ?>
 </section>
-
-<!-- Testimonials Section -->
-<?php if (have_rows('testimonials', 'option')): ?>
-    <div class="container-fw testimonials">
-        <div class="container">
-            <div class="row">
-            <?php while (have_rows('testimonials', 'option')): the_row(); ?>
-                <div class="col-sm-12 col-md-4 text-center single-testi">
-                    <h2><?php echo esc_html(get_sub_field('testimonial_heading')); ?></h2>
-                    <blockquote>
-                        <p><?php echo esc_html(get_sub_field('testimonial_text')); ?></p>
-                    </blockquote>
-                    <h4><?php echo esc_html(get_sub_field('name')); ?></h4>
-                </div>
-            <?php endwhile; ?>
-            </div>
-        </div>
-    </div>
-<?php endif; ?>
 
 <?php
 // Ensure ACF is active

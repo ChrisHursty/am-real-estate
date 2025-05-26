@@ -68,10 +68,10 @@ figure {
 }
 
 .dark-bg {
-    background-color: $black;
+    background-color: #000;
 
     h1, h2, h3, h4, h5, h6, p, li {
-        color: $white;
+        color: $white !important;
     }
 
     @media (max-width: 767px) {

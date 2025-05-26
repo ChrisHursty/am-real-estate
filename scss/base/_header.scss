@@ -552,6 +552,61 @@
     }
 }
 
+.desktop-cart-icon {
+    position: fixed;
+    top: 140px;
+    right: 0;
+    padding: 20px;
+    background-color: $black;
 
+    a {
+        text-decoration: none;
+    }
 
-  
+    .cart-count {
+        color: $white;
+        font-size: 24px;
+    }
+
+    @media (max-width: 1024px) {
+        display: none;
+    }
+}
+
+.mobile-centered-logo {
+    @media (min-width: 1025px) {
+        display: none;
+    }
+}
+
+.mobile-cart-icon {
+    display: none;
+
+    a {
+        text-decoration: none;
+    }
+
+    .cart-count {
+        color: $white;
+        font-size: 24px;
+    }
+
+    @media (max-width: 1024px) {
+        color: $white;
+        padding-left: 20px;
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        z-index: 1000;
+
+    }
+}
+
+.mobile-cart-icon i,
+.desktop-cart-icon i {
+    font-size: 14px;
+    color: $white;
+}
