@@ -126,7 +126,6 @@ defined('ABSPATH') || exit;
             <!-- Cart Icon for Mobile -->
             <div class="mobile-cart-icon">
                 <a href="<?php echo wc_get_cart_url(); ?>">
-                    <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
                 </a>
             </div>
@@ -171,7 +170,6 @@ defined('ABSPATH') || exit;
         <!-- Desktop Cart Icon (Sticky) -->
         <div class="desktop-cart-icon">
             <a href="<?php echo wc_get_cart_url(); ?>">
-                <i class="fas fa-shopping-cart"></i>
                 <span class="cart-count"><?php echo WC()->cart->get_cart_contents_count(); ?></span>
             </a>
         </div>

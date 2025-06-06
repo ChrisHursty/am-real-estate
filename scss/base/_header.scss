@@ -605,8 +605,12 @@
     }
 }
 
-.mobile-cart-icon i,
-.desktop-cart-icon i {
-    font-size: 14px;
-    color: $white;
+.mobile-cart-icon a {
+    border: 1px solid $white;
+    padding: 0 10px;
+}
+
+.desktop-cart-icon a {
+    border: 1px solid $white;
+    padding: 8px 10px;
 }
