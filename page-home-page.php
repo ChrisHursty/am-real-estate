@@ -11,34 +11,24 @@ defined('ABSPATH') || exit;
 get_header();
 ?>
 
-<?php 
-// Get gallery field (array of images) for slideshow
-$slides = get_field('hero_gallery');
-
-// Get text fields
-$hero_heading = get_field('hero_heading');
-$hero_intro   = get_field('hero_intro');
-
-?>
-
 <section class="container-fw home-hero">
-    <!-- Slideshow wrapper -->
-    <?php if ( $slides ): ?>
-        <div class="hero-slideshow">
-            <?php foreach ( $slides as $index => $slide ): 
-                $slide_url = esc_url($slide['url']);
-            ?>
-                <div class="hero-slide" style="background-image: url('<?php echo $slide_url; ?>');"></div>
-            <?php endforeach; ?>
+    <?php
+    // Get featured image
+    $featured_image_id = get_post_thumbnail_id();
+    $featured_image_url = wp_get_attachment_image_url($featured_image_id, 'full');
+    ?>
+
+    <?php if ($featured_image_url): ?>
+        <div class="hero-image-wrapper">
+            <img src="<?php echo esc_url($featured_image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" class="hero-img">
         </div>
     <?php endif; ?>
 
-    <!-- Hero content -->
     <div class="hero-content">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 align-center text-center text-container">
-                    <?php 
+                    <?php
                     $hero_text_background = get_field('hero_text_background_shape');
                     if ($hero_text_background) {
                         $image_url = $hero_text_background['url'];
@@ -46,14 +36,11 @@ $hero_intro   = get_field('hero_intro');
                         echo '<div class="hero-light" style="background-image: url(\'' . esc_url($image_url) . '\');"></div>';
                     }
                     ?>
-                    <!-- <?php if ( $hero_intro ): ?>
-                        <h2 class="intro"><?php echo wp_kses_post( $hero_intro ); ?></h2>
-                    <?php endif; ?> -->
                 </div>
             </div>
         </div>
     </div>
-</section><!-- .home-hero -->
+</section>
 
 <!-- About -->
 <section class="container-fw home-about">

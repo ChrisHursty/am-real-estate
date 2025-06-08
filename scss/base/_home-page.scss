@@ -1,92 +1,23 @@
 .home-hero {
+    margin-top: 114px;
     position: relative;
-    overflow: hidden;
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
 
-    @media (max-width: 767px) {
-        min-height: 50vh;
+    @media (min-width: 1025px) and (max-width: 1175px) {
+        margin-top: 135px;
     }
 
-    .hero-slideshow {
-        position: absolute;
-        top: -50px;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-
-        @media (max-width: 767px) {
-            top: 120px;
-        }
-
-        @media (min-width: 768px) and (max-width: 1025px) {
-            top: 94px;
-        }
+    @media (min-width: 769px) and (max-width: 1024px) {
+        margin-top: 94px;
     }
 
-    .hero-slide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-
-        @media (max-width: 767px) {
-            min-height: 40vh;
-            height: 40vh !important;
-        }
+    @media (max-width: 768px) {
+        margin-top: 119px;
     }
 
-    .hero-content-wrapper {
-        background-color: $cream;
-        padding: 30px;
-        position: relative;
-        z-index: 3;
-        /* ensure content is above overlay and slideshow */
-    }
-
-    .row {
-        align-items: center;
-        justify-content: center;
-
-        @media (max-width: 767px) {
-            flex-direction: column-reverse;
-        }
-
-        .text-container {
-            max-width: 280px;
+    .hero-image-wrapper {
+        img {
             width: 100%;
         }
-
-        h2.intro {
-            font-family: $sub-heading;
-            font-size: 20px;
-            font-weight: 100;
-            line-height: 1.6;
-        }
-    }
-
-    .button-box {
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
-        justify-content: center;
-        margin-top: 70px;
-    }
-}
-
-.home {
-    section {
-        @media (max-width: 1190px) {
-            padding: 0 15px;
-        } 
     }
 }
 
